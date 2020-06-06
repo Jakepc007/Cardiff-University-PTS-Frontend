@@ -1,0 +1,9 @@
+{
+    "alerts": [
+        {
+            "id": 1,
+            "alert": "This website is still a work in progress",
+            "level": "info"
+        }
+    ]
+}
