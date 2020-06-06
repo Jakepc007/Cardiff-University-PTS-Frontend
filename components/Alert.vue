@@ -1,16 +1,14 @@
 <template>
-  <div class="alert">
-    Alert name
-  </div>
+  <div>Alert Component {{ alert }}</div>
 </template>
 
-<style scoped>
-.alert {
-  width: 100%;
-  background: red;
-  padding: 0.5rem;
-  font-weight: 600;
-  color: white;
-  text-align: center;
+<script>
+export default {
+  props: {
+    alert: {
+      type: String,
+      default: 'IDK'
+    }
+  }
 }
-</style>
+</script>

@@ -1,19 +1,9 @@
 <template>
   <v-content>
-    <Alert />
+    Default layout:
     <nuxt />
   </v-content>
 </template>
-
-<script>
-import Alert from '~/components/Alert.vue'
-
-export default {
-  components: {
-    Alert
-  }
-}
-</script>
 
 <style scoped>
 * {
