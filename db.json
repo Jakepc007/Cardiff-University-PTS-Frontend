@@ -3,5 +3,19 @@
         "id": 1,
         "alert": "This website is still a work in progress",
         "level": "info"
-    }
+    },
+    "records": [
+        {
+            "title": "Something",
+            "status": "Just a thought"
+        },
+        {
+            "title": "Something",
+            "status": "Just a thought"
+        },
+        {
+            "title": "Something",
+            "status": "Just a thought"
+        }
+    ]
 }
