@@ -1,6 +1,6 @@
 <template>
   <div class="record-list">
-    <RecordCard v-for="r in records" :key="r.id" />
+    <RecordCard v-for="r in records" :key="r.id" :r="r" />
   </div>
 </template>
 
@@ -24,6 +24,8 @@ export default {
 
 <style>
 .record-list {
+  display: grid;
+  gap: 0.5rem;
   padding: 2rem;
 }
 </style>
