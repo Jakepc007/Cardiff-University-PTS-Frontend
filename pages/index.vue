@@ -1,6 +1,13 @@
 <template>
   <div>
     <Alert :alert="alert" />
+    <v-row no-gutters>
+      <v-col v-for="n in 2" :key="n" cols="12" sm="6">
+        <v-card class="pa-2" outlined tile>
+          Column
+        </v-card>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
