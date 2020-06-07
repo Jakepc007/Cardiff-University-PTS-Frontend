@@ -4,13 +4,11 @@
     <v-row no-gutters>
       <v-col cols="12" sm="6">
         <div class="pa-12" outlined tile>
-          Record list
+          <RecordList />
         </div>
       </v-col>
       <v-col cols="12" sm="6">
-        <v-card class="ma-12" outlined tile>
-          Record info
-        </v-card>
+        Record info
       </v-col>
     </v-row>
   </div>
@@ -19,11 +17,13 @@
 <script>
 import { mapState } from 'vuex'
 import Alert from '@/components/Alert'
+import RecordList from '@/components/RecordList'
 
 export default {
   layout: 'default',
   components: {
-    Alert
+    Alert,
+    RecordList
   },
   async fetch({ store, error }) {
     try {
