@@ -28,6 +28,7 @@ export default {
   async fetch({ store, error }) {
     try {
       await store.dispatch('alerts/fetchAlert')
+      await store.dispatch('records/fetchRecords')
     } catch (e) {
       error({
         statusCode: 503,
@@ -36,7 +37,8 @@ export default {
     }
   },
   computed: mapState({
-    alert: (state) => state.alerts.alert
+    alert: (state) => state.alerts.alert,
+    records: (state) => state.records.records
   })
 }
 </script>

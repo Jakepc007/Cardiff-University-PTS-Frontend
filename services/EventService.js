@@ -12,5 +12,8 @@ const apiClient = axios.create({
 export default {
   getActiveAlert() {
     return apiClient.get('/alert')
+  },
+  getRecords() {
+    return apiClient.get('/records')
   }
 }
