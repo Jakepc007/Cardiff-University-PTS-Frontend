@@ -1,6 +1,6 @@
 <template>
   <div class="record-list">
-    <RecordCard v-for="alert in alerts" :key="alert.id" />
+    <RecordCard v-for="r in records" :key="r.id" />
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
     RecordCard
   },
   props: {
-    alerts: {
+    records: {
       type: Array,
       default() {
         return []
