@@ -8,15 +8,15 @@
 import Alert from '@/components/Alert.vue'
 
 export default {
-  layout: 'default_demo',
+  layout: 'default',
   components: {
     Alert
   },
   async asyncData({ $axios, error }) {
     try {
-      const { data } = await $axios.get('http://localhost:3001/event')
+      const { data } = await $axios.get('http://localhost:3000/alert')
       return {
-        alert: data.name
+        alert: data
       }
     } catch (e) {
       error({
