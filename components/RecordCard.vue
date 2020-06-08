@@ -2,8 +2,9 @@
   <router-link :to="{ params: { id: r.id } }">
     <v-card
       class="record-card"
-      outlined
       :raised="hover"
+      ripple
+      outlined
       width="full"
       @mouseover="hover = true"
       @mouseleave="hover = false"
@@ -38,10 +39,8 @@ export default {
 
 <style scoped>
 .record-card {
-  width: 100%;
-  padding: 0px;
-  margin-left: auto;
-  margin-right: auto;
+  border-radius: 100px;
+  background: rgb(255, 238, 238);
 }
 
 a {

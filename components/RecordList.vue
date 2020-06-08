@@ -25,7 +25,7 @@ export default {
 <style>
 .record-list {
   display: grid;
-  gap: 0.5rem;
+  gap: 1rem;
   padding: 2rem;
 }
 </style>
