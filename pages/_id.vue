@@ -8,7 +8,7 @@
         </div>
       </v-col>
       <v-col cols="12" sm="6">
-        Record info
+        {{ currentRoute }}
       </v-col>
     </v-row>
   </div>
@@ -36,9 +36,14 @@ export default {
       })
     }
   },
-  computed: mapState({
-    alert: (state) => state.alerts.alert,
-    records: (state) => state.records.records
-  })
+  computed: {
+    ...mapState({
+      alert: (state) => state.alerts.alert,
+      records: (state) => state.records.records
+    }),
+    currentRoute() {
+      return this.records[this.$route.params.id - 1]
+    }
+  }
 }
 </script>
