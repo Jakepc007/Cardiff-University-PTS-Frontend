@@ -10,10 +10,12 @@ import { mapState } from 'vuex'
 import Alert from '@/components/Alert'
 
 export default {
-  theme: 'light',
   components: {
     Alert
   },
+  // The fetch here, allows dispatching of VueX actions,
+  // which then retrieve the most recent alert, and can
+  // then plug that into the layout
   async fetch({ store, error }) {
     try {
       await store.dispatch('alerts/fetchAlert')
@@ -26,17 +28,14 @@ export default {
   },
   computed: {
     ...mapState({
-      alert: (state) => state.alerts.alert,
-      records: (state) => state.records.records
-    }),
-    currentRoute() {
-      return this.records[this.$route.params.id - 1]
-    }
+      alert: (state) => state.alerts.alert
+    })
   }
 }
 </script>
 
 <style scoped>
+/* This doesn't seem to do anything, but I will keep it for now... */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 * {
