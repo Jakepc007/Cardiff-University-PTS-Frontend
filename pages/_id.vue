@@ -1,6 +1,15 @@
+<!--            _id.vue page
+
+    Acts as the home page, takes in the baseURL's 
+    appended value as the ID.
+
+    Not a splash page, and logic may need to be 
+    updated to allow for an ID-less route  
+
+    author: Jake Morris -->
+
 <template>
   <div>
-    <Alert :alert="alert" />
     <v-row no-gutters>
       <v-col cols="12" sm="6">
         <div outlined tile>
@@ -16,13 +25,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import Alert from '@/components/Alert'
 import RecordList from '@/components/RecordList'
 
 export default {
   layout: 'default',
   components: {
-    Alert,
     RecordList
   },
   async fetch({ store, error }) {

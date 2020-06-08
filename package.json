@@ -10,7 +10,8 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "fix": "npm run lint -- --fix"
+    "fix": "npm run lint -- --fix",
+    "api": "json-server --watch db.json"
   },
   "dependencies": {
     "nuxt": "^2.0.0",

@@ -1,0 +1,14 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "command": "npm",
+    "isShellCommand": true,
+    "showOutput": "never",
+    "suppressTaskName": true,
+    "tasks": [
+        {
+            "taskName": "fix",
+            "showOutput": "never"
+        }
+    ]
+}
