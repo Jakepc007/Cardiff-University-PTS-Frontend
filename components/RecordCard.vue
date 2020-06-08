@@ -1,23 +1,21 @@
 <template>
-  <v-card
-    class="record-card"
-    max-width="344"
-    outlined
-    :raised="hover"
-    @mouseover="hover = true"
-    @mouseleave="hover = false"
-  >
-    <v-list-item three-line>
-      <v-list-item-content>
-        <div>{{ r.title }}</div>
-        <v-list-item-subtitle
-          >Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle
-        >
-      </v-list-item-content>
-
-      <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
-    </v-list-item>
-  </v-card>
+  <router-link :to="{ params: { id: r.id } }">
+    <v-card
+      class="record-card"
+      outlined
+      :raised="hover"
+      width="full"
+      @mouseover="hover = true"
+      @mouseleave="hover = false"
+    >
+      <v-list-item three-line>
+        <v-list-item-content>
+          <div>{{ r.title }}</div>
+          <v-list-item-subtitle>{{ r.desc }}</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+    </v-card>
+  </router-link>
 </template>
 
 <script>
@@ -40,8 +38,13 @@ export default {
 
 <style scoped>
 .record-card {
+  width: 100%;
   padding: 0px;
   margin-left: auto;
   margin-right: auto;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
