@@ -22,10 +22,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .record-list {
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
   padding: 2rem;
+  grid-template-columns: 1fr;
+
+  @media only screen and (min-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 </style>
