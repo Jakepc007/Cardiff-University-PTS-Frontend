@@ -15,5 +15,8 @@ export default {
   },
   getRecords() {
     return apiClient.get('/records')
+  },
+  getRecord(id) {
+    return apiClient.get('/record/' + id)
   }
 }
