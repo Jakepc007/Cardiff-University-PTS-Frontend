@@ -22,20 +22,23 @@ export default {
   components: {
     RecordDisplay
   },
-  async fetch({ store, error }) {
+  async fetch({ store, error, params }) {
     try {
-      await store.dispatch('records/fetchRecord', 2)
+      await store.dispatch('records/fetchCurrentRecord', params.id)
     } catch (e) {
       error({
         statusCode: 503,
-        message: 'Unable to fetch events at this time'
+        message: 'Unable to fetch the record'
       })
     }
   },
   computed: {
     ...mapState({
       record: (state) => state.records.record
-    })
+    }),
+    paramId() {
+      return this.$route.params.id
+    }
   }
 }
 </script>

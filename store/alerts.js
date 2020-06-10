@@ -11,6 +11,11 @@ export const mutations = {
 }
 
 export const actions = {
+  async nuxtServerInit({ commit }) {
+    await EventService.getActiveAlert().then((res) => {
+      commit('SET_ALERT', res.data)
+    })
+  },
   fetchAlert({ commit }) {
     return EventService.getActiveAlert().then((res) => {
       commit('SET_ALERT', res.data)

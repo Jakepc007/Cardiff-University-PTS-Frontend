@@ -13,10 +13,10 @@ export default {
   getActiveAlert() {
     return apiClient.get('/alert')
   },
+  getCurrentRecord(id) {
+    return apiClient.get('/records/' + id)
+  },
   getRecords() {
     return apiClient.get('/records')
-  },
-  getRecord(id) {
-    return apiClient.get('/record/' + id)
   }
 }
