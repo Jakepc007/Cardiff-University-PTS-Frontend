@@ -1,7 +1,9 @@
 <template>
-  <div class="alert" :class="alert.level">
-    {{ alert.alert }}
-  </div>
+  <v-lazy value="4000" transition="scroll-y-transition">
+    <div class="alert" :class="alert.level">
+      {{ alert.alert }}
+    </div>
+  </v-lazy>
 </template>
 
 <script>
