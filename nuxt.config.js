@@ -22,7 +22,7 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#00f' },
+  loading: { color: '#fff' },
   /*
    ** Global CSS
    */
@@ -79,6 +79,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) { }
+    extend(config, ctx) {}
   }
 }
