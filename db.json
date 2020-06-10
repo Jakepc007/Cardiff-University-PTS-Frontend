@@ -9,13 +9,13 @@
             "id": 1,
             "title": "Cardiff Water Supply Project",
             "desc": "Yo! This water supply project is gonna be so cool, trust me, I don't know what's gonna happen to this water in Cardiff, but just know that when it happens, it was US driving the front seat",
-            "status": "Ready for Submission"
+            "status": "Ready for submission"
         },
         {
             "id": 2,
             "title": "Newport Nuclear Reactor Research",
             "desc": "Newport is having serious power management issues, this investigation will find out the route cause of the issue",
-            "status": "Approved"
+            "status": "Awarded"
         },
         {
             "id": 3,
@@ -26,13 +26,13 @@
             "id": 4,
             "title": "Cardiff Water Supply Project",
             "desc": "Yo! This water supply project is gonna be so cool, trust me, I don't know what's gonna happen to this water in Cardiff, but just know that when it happens, it was US driving the front seat",
-            "status": "Ready for Submission"
+            "status": "Preparing documents"
         },
         {
             "id": 5,
             "title": "Newport Nuclear Reactor Research",
             "desc": "Newport is having serious power management issues, this investigation will find out the route cause of the issue",
-            "status": "Approved"
+            "status": "Awarded"
         },
         {
             "id": 6,
@@ -43,13 +43,13 @@
             "id": 7,
             "title": "Cardiff Water Supply Project",
             "desc": "Yo! This water supply project is gonna be so cool, trust me, I don't know what's gonna happen to this water in Cardiff, but just know that when it happens, it was US driving the front seat",
-            "status": "Ready for Submission"
+            "status": "Ready for submission"
         },
         {
             "id": 8,
             "title": "Newport Nuclear Reactor Research",
             "desc": "Newport is having serious power management issues, this investigation will find out the route cause of the issue",
-            "status": "Approved"
+            "status": "Preparing documents"
         },
         {
             "id": 9,
@@ -60,13 +60,13 @@
             "id": 10,
             "title": "Cardiff Water Supply Project",
             "desc": "Yo! This water supply project is gonna be so cool, trust me, I don't know what's gonna happen to this water in Cardiff, but just know that when it happens, it was US driving the front seat",
-            "status": "Ready for Submission"
+            "status": "Ready for submission"
         },
         {
             "id": 11,
             "title": "Newport Nuclear Reactor Research",
             "desc": "Newport is having serious power management issues, this investigation will find out the route cause of the issue",
-            "status": "Approved"
+            "status": "Awarded"
         },
         {
             "id": 12,
