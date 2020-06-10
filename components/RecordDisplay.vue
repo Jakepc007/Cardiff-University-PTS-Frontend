@@ -1,8 +1,8 @@
 <template>
   <div>
-    <nuxt-link to="/records"
-      ><v-icon large>mdi-checkbox-marked-circle</v-icon></nuxt-link
-    >
+    <v-lazy transition="scroll-x-transition">
+      <nuxt-link to="/records"><v-icon large>mdi-arrow-left</v-icon></nuxt-link>
+    </v-lazy>
     <v-lazy
       :options="{
         threshold: 1
