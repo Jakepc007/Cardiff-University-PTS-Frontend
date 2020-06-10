@@ -26,7 +26,6 @@ export default {
 .record-list {
   display: grid;
   gap: 2rem;
-  padding: 2rem;
   grid-template-columns: 1fr;
 
   @media only screen and (min-width: 900px) {
