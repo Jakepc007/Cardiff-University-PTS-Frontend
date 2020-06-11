@@ -42,7 +42,7 @@ export default {
 .record-card {
   margin-left: auto;
   margin-right: auto;
-  background: rgb(255, 238, 238);
+  background: white;
 }
 
 a {

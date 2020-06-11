@@ -4,7 +4,16 @@ export const state = () => ({
   records: [],
   filtered: [],
   record: {},
-  filter: {}
+  statuses: [
+    'Just a thought',
+    'Ready for submission',
+    'Preparing documents',
+    'Awarded'
+  ],
+  filter: {
+    statuses: ['Just a thought', 'Ready for submission', 'Awarded']
+  },
+  filterActive: false
 })
 
 export const mutations = {
@@ -19,29 +28,40 @@ export const mutations = {
   },
   SET_FILTERED(state, filtered) {
     state.filtered = filtered
+  },
+  TOGGLE_FILTER(state) {
+    state.filterActive = !state.filterActive
+  },
+  TOGGLE_FILTER_STATUS(state, { status, checked }) {
+    if (state.filter.statuses.includes(status)) {
+      const index = state.filter.statuses.indexOf(status)
+      state.filter.statuses.splice(index, 1)
+    } else {
+      state.filter.statuses.push(status)
+    }
   }
 }
 
 export const actions = {
-  fetchRecords({ commit, getters }) {
-    const filter = getters.getFilter()
-
-    if (isEmpty(filter)) {
-      return EventService.getRecords().then((res) => {
-        commit('SET_RECORDS', res.data)
-      })
-    } else {
-      return commit('SET_FILTERED', getters.getFilteredRecords())
-    }
+  fetchRecords({ commit }) {
+    return EventService.getRecords().then((res) => {
+      commit('SET_RECORDS', res.data)
+    })
   },
-  updateFilterStatus({ commit, getters }, status) {
-    commit('SET_FILTER_STATUS', status)
-    const r = getters.getFilteredRecords()
-    commit('SET_FILTERED', r)
+  fetchFiltered({ commit, getters }) {
+    return EventService.getRecords().then((res) => {
+      return commit('SET_FILTERED', getters.filterRecords(res.data))
+    })
+  },
+  toggleFilter({ commit, dispatch }) {
+    commit('TOGGLE_FILTER')
+    dispatch('fetchFiltered')
+  },
+  updateFilterStatus({ commit }, { status, checked }) {
+    commit('TOGGLE_FILTER_STATUS', { status, checked })
   },
   fetchCurrentRecord({ commit, getters }, id) {
     const record = getters.getRecordById(id)
-
     if (record) {
       commit('SET_RECORD', record)
     } else {
@@ -65,29 +85,21 @@ export const getters = {
     })
     return filtered
   },
-  getFilteredRecords: (state) => () => {
-    // First check if the status matches
-    const filtered = state.records.filter((record) => {
-      return record.status === state.filter.status
-    })
 
-    return filtered
-    // Finally return the filtered records
+  getFilterActive: (state) => () => {
+    return state.filterActive
   },
-  getStatusLengths: (state, getters) => () => {
-    console.log('hm')
-    return [
-      getters.getFilteredRecordsByStatus('Just a thought').length,
-      getters.getFilteredRecordsByStatus('Preparing documents').length,
-      getters.getFilteredRecordsByStatus('Ready for submission').length,
-      getters.getFilteredRecordsByStatus('Awarded').length
-    ]
+  filterRecords: (state) => (records) => {
+    const filteredRecords = records.filter((r) => {
+      return state.filter.statuses.includes(r.status)
+    })
+    return filteredRecords
   }
 }
 
-const isEmpty = (obj) => {
-  for (const i in obj) {
-    return false
-  }
-  return true
-}
+// const isEmpty = (obj) => {
+//   for (const i in obj) {
+//     return false
+//   }
+//   return true
+// }

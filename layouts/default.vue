@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="layout">
     <Alert :alert="alert" />
     <nuxt class="app" />
   </v-app>
@@ -37,5 +37,9 @@ export default {
 <style lang="scss">
 .container {
   padding: 2px;
+}
+
+.v-application--wrap {
+  background: rgb(255, 238, 238);
 }
 </style>
