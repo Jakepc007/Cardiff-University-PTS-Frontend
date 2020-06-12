@@ -1,21 +1,29 @@
 <template>
   <div>
-    <div class="flex">
-      <div
-        v-for="(status, index) in statuses"
-        :key="index"
-        class="filter-container"
-      >
-        <input
-          v-model="checkedStatuses"
-          :value="status"
-          type="checkbox"
-          @change="filterStatus(status, $event)"
-        />
-        <div>{{ status }}</div>
-        <div>{{ records.filter((r) => r.status === status).length }}</div>
+    <v-card outlined class="filter">
+      <div class="filter-title">Filters:</div>
+      <div class="grid filter-content">
+        <div
+          v-for="(status, index) in statuses"
+          :key="index"
+          class="filter-container"
+        >
+          <input
+            v-model="checkedStatuses"
+            :value="status"
+            type="checkbox"
+            @change="filterStatus(status)"
+          />
+          <span>{{ status }}</span>
+          <span class="amount">{{
+            records.filter((r) => r.status === status).length
+          }}</span>
+        </div>
       </div>
-    </div>
+      <div class="btn-container">
+        <button class="search-btn" @click="search">Search</button>
+      </div>
+    </v-card>
   </div>
 </template>
 
@@ -31,17 +39,6 @@ export default {
       }
     }
   },
-  async asyncData({ store, error }) {
-    try {
-      await store.dispatch('alerts/fetchAlert')
-      await store.dispatch('records/fetchRecords')
-    } catch (e) {
-      error({
-        statusCode: 503,
-        message: 'Unable to fetch events at this time'
-      })
-    }
-  },
   computed: {
     ...mapState({
       statuses: (state) => state.records.statuses,
@@ -50,31 +47,71 @@ export default {
   },
   methods: {
     ...mapActions({ updateFilterStatus: 'records/updateFilterStatus' }),
-    filterStatus(status, event) {
-      const checked = event.target.checked
-      this.updateFilterStatus({ status, checked })
+    filterStatus(status) {
+      this.updateFilterStatus(status)
+    },
+    search() {
+      this.$store.dispatch('records/fetchFiltered')
     }
   }
 }
 </script>
 
 <style>
-.flex {
+.filter {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 1rem;
+  column-gap: 2rem;
+}
+
+.filter-title {
+  background: rgb(255, 33, 33);
+  color: white;
+  font-weight: 600;
+  padding: 0.25rem;
+}
+
+.filter-content {
+  padding: 1rem;
+}
+
+.amount {
+  color: rgb(255, 33, 33);
+  float: right;
+}
+
+.search-btn {
+  background: rgb(255, 33, 33);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: 0.25s;
+}
+
+.-blur {
+  filter: blur(4px);
+}
+
+.search-btn:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.212);
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
   margin-bottom: 1rem;
-  padding-left: 10%;
-  padding-right: 10%;
-  gap: 1rem;
 }
 
 .filter-container {
-  text-align: center;
-  padding: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   background: rgb(255, 236, 236);
-  border: 1px solid rgb(128, 128, 128);
-  border-radius: 0.5rem;
   background: white;
+  border-bottom: 1px solid gray;
 }
 </style>

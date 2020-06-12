@@ -40,6 +40,6 @@ export default {
 }
 
 .v-application--wrap {
-  background: rgb(255, 238, 238);
+  background: #fafafa;
 }
 </style>

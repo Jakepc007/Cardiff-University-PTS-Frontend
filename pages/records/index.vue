@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-    <Filters :records="records" @toggleFilter="toggleFilter" />
-    <button @click="toggleFilter">Search</button>
+    <Filters :records="records" />
     <RecordList :records="filtered" />
   </div>
 </template>
@@ -39,11 +38,7 @@ export default {
       filtered: (state) => state.records.filtered
     })
   },
-  methods: {
-    toggleFilter() {
-      this.$store.dispatch('records/toggleFilter')
-    }
-  }
+  methods: {}
 }
 </script>
 

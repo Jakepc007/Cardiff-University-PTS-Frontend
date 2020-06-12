@@ -23,16 +23,10 @@ export const mutations = {
   SET_RECORD(state, record) {
     state.record = record
   },
-  SET_FILTER_STATUS(state, status) {
-    state.filter.status = status
-  },
   SET_FILTERED(state, filtered) {
     state.filtered = filtered
   },
-  TOGGLE_FILTER(state) {
-    state.filterActive = !state.filterActive
-  },
-  TOGGLE_FILTER_STATUS(state, { status, checked }) {
+  TOGGLE_FILTER_STATUS(state, status) {
     if (state.filter.statuses.includes(status)) {
       const index = state.filter.statuses.indexOf(status)
       state.filter.statuses.splice(index, 1)
@@ -53,12 +47,8 @@ export const actions = {
       return commit('SET_FILTERED', getters.filterRecords(res.data))
     })
   },
-  toggleFilter({ commit, dispatch }) {
-    commit('TOGGLE_FILTER')
-    dispatch('fetchFiltered')
-  },
-  updateFilterStatus({ commit }, { status, checked }) {
-    commit('TOGGLE_FILTER_STATUS', { status, checked })
+  updateFilterStatus({ commit }, status) {
+    commit('TOGGLE_FILTER_STATUS', status)
   },
   fetchCurrentRecord({ commit, getters }, id) {
     const record = getters.getRecordById(id)
@@ -76,18 +66,11 @@ export const getters = {
   getRecordById: (state) => (id) => {
     return state.records.find((record) => record.id === id)
   },
-  getFilter: (state) => () => {
-    return state.filter
-  },
   getFilteredRecordsByStatus: (state) => (status) => {
     const filtered = state.records.filter((record) => {
       return record.status === status
     })
     return filtered
-  },
-
-  getFilterActive: (state) => () => {
-    return state.filterActive
   },
   filterRecords: (state) => (records) => {
     const filteredRecords = records.filter((r) => {
@@ -96,10 +79,3 @@ export const getters = {
     return filteredRecords
   }
 }
-
-// const isEmpty = (obj) => {
-//   for (const i in obj) {
-//     return false
-//   }
-//   return true
-// }

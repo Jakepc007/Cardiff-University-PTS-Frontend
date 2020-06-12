@@ -5,7 +5,7 @@
         :options="{
           threshold: 1
         }"
-        transition="scroll-x-transition"
+        transition="slide-x-transition"
       >
         <v-card class="record-card" ripple outlined :elevation="hover ? 2 : 0">
           <router-link :to="{ path: 'records/' + r.id }">
