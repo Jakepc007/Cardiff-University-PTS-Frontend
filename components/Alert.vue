@@ -32,7 +32,7 @@ export default {
 }
 
 .info {
-  background: rgb(151, 151, 0);
+  background: rgb(95, 95, 255);
   color: white;
 }
 </style>
