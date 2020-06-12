@@ -1,7 +1,7 @@
 <template>
   <v-app class="layout">
-    <Alert :alert="alert" />
     <NavBar />
+    <Alert :alert="alert" />
     <nuxt class="app" />
   </v-app>
 </template>

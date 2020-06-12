@@ -47,8 +47,9 @@ export const actions = {
       return commit('SET_FILTERED', getters.filterRecords(res.data))
     })
   },
-  updateFilterStatus({ commit }, status) {
+  updateFilterStatus({ commit, dispatch }, status) {
     commit('TOGGLE_FILTER_STATUS', status)
+    dispatch('fetchFiltered')
   },
   fetchCurrentRecord({ commit, getters }, id) {
     const record = getters.getRecordById(id)

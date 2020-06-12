@@ -1,7 +1,12 @@
 <template>
   <div>
     <v-card outlined class="filter">
-      <div class="filter-title">Status:</div>
+      <v-text-field
+        label="Search by title or description"
+        style="margin-bottom: 1rem"
+        :hide-details="true"
+      ></v-text-field>
+      <!-- <div class="filter-title">Status:</div> -->
       <div class="grid filter-content">
         <div
           v-for="(status, index) in statuses"
@@ -14,6 +19,7 @@
             :value="status"
             type="checkbox"
             :label="status"
+            :hide-details="true"
             @change="filterStatus(status)"
           />
           <!-- <span class="amount">{{
@@ -22,9 +28,9 @@
         </div>
       </div>
     </v-card>
-    <div class="btn-container">
+    <!-- <div class="btn-container">
       <v-btn @click="search">Search</v-btn>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -60,13 +66,14 @@ export default {
 
 <style lang="scss">
 .filter {
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 
   @media only screen and (min-width: 900px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -78,10 +85,6 @@ export default {
   font-weight: 600;
   padding-left: 1rem;
   text-align: center;
-}
-
-.filter-content {
-  padding: 1rem;
 }
 
 .btn-container {

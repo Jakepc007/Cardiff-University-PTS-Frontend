@@ -45,6 +45,7 @@ export default {
 <style scoped lang="scss">
 .container {
   width: 90%;
+  margin-top: 3rem;
 
   @media only screen and (min-width: 900px) {
     width: 50%;
