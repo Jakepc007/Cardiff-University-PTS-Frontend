@@ -74,9 +74,12 @@ export const getters = {
     return filtered
   },
   filterRecords: (state) => (records) => {
-    const filteredRecords = records.filter((r) => {
-      return state.filter.statuses.includes(r.status)
-    })
-    return filteredRecords
+    // Filter by status
+    if (state.filter.statuses.length !== 0) {
+      records = records.filter((r) => {
+        return state.filter.statuses.includes(r.status)
+      })
+    }
+    return records
   }
 }
