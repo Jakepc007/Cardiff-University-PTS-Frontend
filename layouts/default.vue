@@ -1,6 +1,7 @@
 <template>
   <v-app class="layout">
     <Alert :alert="alert" />
+    <NavBar />
     <nuxt class="app" />
   </v-app>
 </template>
@@ -8,10 +9,12 @@
 <script>
 import { mapState } from 'vuex'
 import Alert from '@/components/Alert'
+import NavBar from '@/components/NavBar'
 
 export default {
   components: {
-    Alert
+    Alert,
+    NavBar
   },
   // The fetch here, allows dispatching of VueX actions,
   // which then retrieve the most recent alert, and can

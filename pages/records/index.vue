@@ -42,9 +42,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .container {
-  width: 50%;
+  width: 90%;
+
+  @media only screen and (min-width: 900px) {
+    width: 50%;
+  }
 }
 
 .checkbox {

@@ -1,29 +1,30 @@
 <template>
   <div>
     <v-card outlined class="filter">
-      <div class="filter-title">Filters:</div>
+      <div class="filter-title">Status:</div>
       <div class="grid filter-content">
         <div
           v-for="(status, index) in statuses"
           :key="index"
           class="filter-container"
         >
-          <input
+          <v-checkbox
             v-model="checkedStatuses"
+            style="display: inline"
             :value="status"
             type="checkbox"
+            :label="status"
             @change="filterStatus(status)"
           />
-          <span>{{ status }}</span>
-          <span class="amount">{{
+          <!-- <span class="amount">{{
             records.filter((r) => r.status === status).length
-          }}</span>
+          }}</span> -->
         </div>
       </div>
-      <div class="btn-container">
-        <button class="search-btn" @click="search">Search</button>
-      </div>
     </v-card>
+    <div class="btn-container">
+      <v-btn @click="search">Search</v-btn>
+    </div>
   </div>
 </template>
 
@@ -57,48 +58,30 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .filter {
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 2rem;
+
+  @media only screen and (min-width: 900px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 
 .filter-title {
-  background: rgb(255, 33, 33);
-  color: white;
+  color: rgb(53, 53, 53);
   font-weight: 600;
-  padding: 0.25rem;
+  padding-left: 1rem;
+  text-align: center;
 }
 
 .filter-content {
   padding: 1rem;
-}
-
-.amount {
-  color: rgb(255, 33, 33);
-  float: right;
-}
-
-.search-btn {
-  background: rgb(255, 33, 33);
-  color: white;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  transition: 0.25s;
-}
-
-.-blur {
-  filter: blur(4px);
-}
-
-.search-btn:hover {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.212);
 }
 
 .btn-container {
@@ -108,10 +91,7 @@ export default {
 }
 
 .filter-container {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
   background: rgb(255, 236, 236);
   background: white;
-  border-bottom: 1px solid gray;
 }
 </style>
