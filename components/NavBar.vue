@@ -28,14 +28,20 @@
 
     <v-navigation-drawer v-model="drawer" width="400" temporary app>
       <div class="img-and-title-header">
+        <v-icon
+          style="position: absolute; top: 1rem;  right: 1rem"
+          large
+          @click="toggleDrawer"
+          >mdi-close</v-icon
+        >
+
         <img
-          style="width: 80px; margin-right: 1rem"
+          style="width: 80px; height: 80px; margin-right: 1rem"
           src="~/assets/logo.png"
           @click="drawer = !drawer"
         />
         <span class="title">
-          Research Pipeline
-          <p>School of Engineering</p>
+          <p>Research Pipeline School of Engineering</p>
         </span>
       </div>
     </v-navigation-drawer>
@@ -72,9 +78,5 @@ export default {
 
 .v-navigation-drawer {
   padding: 1rem;
-}
-
-.img-and-title-header {
-  display: flex;
 }
 </style>

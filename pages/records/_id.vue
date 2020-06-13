@@ -3,8 +3,6 @@
     Acts as the home page, takes in the baseURL's 
     appended value as the ID.
 
-
-
     author: Jake Morris -->
 
 <template>

@@ -2,9 +2,11 @@
   <div>
     <v-card outlined class="filter">
       <v-text-field
+        v-model="searchQuery"
         label="Search by title or description"
         style="margin-bottom: 1rem"
         :hide-details="true"
+        @input="updateSearch()"
       ></v-text-field>
       <!-- <div class="filter-title">Status:</div> -->
       <div class="grid filter-content">
@@ -46,6 +48,11 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      searchQuery: ''
+    }
+  },
   computed: {
     ...mapState({
       statuses: (state) => state.records.statuses,
@@ -59,6 +66,9 @@ export default {
     },
     search() {
       this.$store.dispatch('records/fetchFiltered')
+    },
+    updateSearch() {
+      this.$store.dispatch('records/updateSearch', this.searchQuery)
     }
   }
 }

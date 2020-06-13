@@ -11,6 +11,7 @@ export const state = () => ({
     'Awarded'
   ],
   filter: {
+    search: '',
     statuses: ['Just a thought', 'Ready for submission', 'Awarded']
   },
   filterActive: false
@@ -33,10 +34,17 @@ export const mutations = {
     } else {
       state.filter.statuses.push(status)
     }
+  },
+  SET_FILTER_SEARCH(state, search) {
+    state.filter.search = search
   }
 }
 
 export const actions = {
+  updateSearch({ commit, dispatch }, search) {
+    commit('SET_FILTER_SEARCH', search)
+    dispatch('fetchFiltered')
+  },
   fetchRecords({ commit }) {
     return EventService.getRecords().then((res) => {
       commit('SET_RECORDS', res.data)
@@ -74,12 +82,23 @@ export const getters = {
     return filtered
   },
   filterRecords: (state) => (records) => {
+    const filter = state.filter
+
     // Filter by status
-    if (state.filter.statuses.length !== 0) {
+    if (filter.statuses.length !== 0) {
       records = records.filter((r) => {
-        return state.filter.statuses.includes(r.status)
+        return filter.statuses.includes(r.status)
       })
     }
+
+    if (filter.search === '') {
+    } else {
+      records = records.filter((r) => {
+        return r.title.includes(filter.search)
+      })
+    }
+
+    // Finally return the modified records array
     return records
   }
 }
