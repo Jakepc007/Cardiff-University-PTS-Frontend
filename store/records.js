@@ -116,7 +116,10 @@ export const getters = {
     if (filter.search === '') {
     } else {
       records = records.filter((r) => {
-        return r.title.toLowerCase().includes(filter.search.toLowerCase())
+        return (
+          r.desc.toLowerCase().includes(filter.search.toLowerCase()) ||
+          r.title.toLowerCase().includes(filter.search.toLowerCase())
+        )
       })
     }
 
