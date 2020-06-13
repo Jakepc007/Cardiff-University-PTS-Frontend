@@ -1,11 +1,17 @@
 <template>
   <div class="record-list">
     <RecordCard v-for="r in records" :key="r.id" :r="r" />
-    <Paging :value="3" />
+    <Paging
+      v-if="records.length !== 0"
+      :records="records"
+      value="3"
+      :page="page"
+    />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import RecordCard from '@/components/RecordCard.vue'
 import Paging from '@/components/Paging.vue'
 
@@ -21,12 +27,21 @@ export default {
         return []
       }
     }
+  },
+  computed: {
+    ...mapState({
+      page: (state) => state.records.page
+    })
+  },
+  methods: {
+    onPageChange() {}
   }
 }
 </script>
 
 <style lang="scss">
 .record-list {
+  margin-bottom: 8rem;
   display: grid;
   gap: 0.5rem;
   grid-template-columns: 1fr;

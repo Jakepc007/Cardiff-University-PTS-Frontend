@@ -22,6 +22,8 @@ export default {
   async fetch({ store, error }) {
     try {
       await store.dispatch('alerts/fetchAlert')
+      //   await store.dispatch('records/fetchRecords')
+      //   await store.dispatch('records/findRecords')
     } catch (e) {
       error({
         statusCode: 503,

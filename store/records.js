@@ -14,7 +14,9 @@ export const state = () => ({
     search: '',
     statuses: ['Just a thought', 'Ready for submission', 'Awarded']
   },
-  filterActive: false
+  filterActive: false,
+  page: 1,
+  paged: []
 })
 
 export const mutations = {
@@ -37,27 +39,39 @@ export const mutations = {
   },
   SET_FILTER_SEARCH(state, search) {
     state.filter.search = search
+  },
+  SET_PAGE(state, page) {
+    state.page = page
+  },
+  SET_PAGED(state, records) {
+    state.paged = records
+  },
+  SET_RECORDS_FOR_PAGE(state, records) {
+    state.paged = records
   }
 }
 
 export const actions = {
   updateSearch({ commit, dispatch }, search) {
     commit('SET_FILTER_SEARCH', search)
-    dispatch('fetchFiltered')
+    commit('SET_PAGE', 1)
+    dispatch('findRecords')
   },
   fetchRecords({ commit }) {
     return EventService.getRecords().then((res) => {
       commit('SET_RECORDS', res.data)
     })
   },
-  fetchFiltered({ commit, getters }) {
-    return EventService.getRecords().then((res) => {
-      return commit('SET_FILTERED', getters.filterRecords(res.data))
-    })
+  filterRecords({ commit, getters }) {
+    commit('SET_FILTERED', getters.filterRecords())
+  },
+  pageRecords({ commit, getters }) {
+    commit('SET_PAGED', getters.pageRecords())
   },
   updateFilterStatus({ commit, dispatch }, status) {
     commit('TOGGLE_FILTER_STATUS', status)
-    dispatch('fetchFiltered')
+    commit('SET_PAGE', 1)
+    dispatch('findRecords')
   },
   fetchCurrentRecord({ commit, getters }, id) {
     const record = getters.getRecordById(id)
@@ -68,6 +82,14 @@ export const actions = {
         commit('SET_RECORD', res.data)
       })
     }
+  },
+  findRecords({ dispatch }) {
+    dispatch('filterRecords')
+    dispatch('pageRecords')
+  },
+  updatePage({ commit, dispatch }, page) {
+    commit('SET_PAGE', page)
+    dispatch('findRecords')
   }
 }
 
@@ -81,10 +103,10 @@ export const getters = {
     })
     return filtered
   },
-  filterRecords: (state) => (records) => {
+  filterRecords: (state) => () => {
     const filter = state.filter
+    let records = state.records
 
-    // Filter by status
     if (filter.statuses.length !== 0) {
       records = records.filter((r) => {
         return filter.statuses.includes(r.status)
@@ -98,7 +120,14 @@ export const getters = {
       })
     }
 
-    // Finally return the modified records array
     return records
+  },
+  pageRecords: (state) => () => {
+    const page = state.page - 1
+    const pageSize = 5
+    const pageStart = page * pageSize
+    const pageEnd = page * pageSize + pageSize
+    const data = state.filtered.slice(pageStart, pageEnd)
+    return data
   }
 }

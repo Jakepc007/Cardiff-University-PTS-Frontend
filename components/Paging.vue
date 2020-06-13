@@ -1,14 +1,35 @@
 <template>
-  <div class="text-center">
-    <v-pagination v-model="page" :length="4" circle></v-pagination>
+  <div>
+    <v-pagination
+      v-model="page"
+      :length="pageCount"
+      circle
+      @input="onChange"
+    ></v-pagination>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  data() {
-    return {
-      page: 1
+  props: {
+    page: {
+      default: 1,
+      type: Number
+    }
+  },
+  computed: {
+    ...mapState({
+      filteredLength: (state) => state.records.filtered.length
+    }),
+    pageCount() {
+      return Math.floor((this.filteredLength - 1) / 5) + 1
+    }
+  },
+  methods: {
+    onChange() {
+      this.$store.dispatch('records/updatePage', this.page)
     }
   }
 }

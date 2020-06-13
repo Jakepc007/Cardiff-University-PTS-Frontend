@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <v-lazy transition="fade-transition">
     <v-card outlined class="filter">
       <v-text-field
         v-model="searchQuery"
         label="Search by title or description"
         style="margin-bottom: 1rem"
         :hide-details="true"
+        @input="updateSearchQuery"
       ></v-text-field>
       <!-- <div class="filter-title">Status:</div> -->
       <div class="grid filter-content">
@@ -21,6 +22,7 @@
             type="checkbox"
             :label="status"
             :hide-details="true"
+            @change="filterStatus(status)"
           />
           <!-- <span class="amount">{{
             records.filter((r) => r.status === status).length
@@ -31,7 +33,7 @@
     <!-- <div class="btn-container">
       <v-btn @click="search">Search</v-btn>
     </div> -->
-  </div>
+  </v-lazy>
 </template>
 
 <script>
@@ -47,21 +49,15 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      searchQuery: this.$store.state.records.filter.search
+    }
   },
   computed: {
     ...mapState({
       statuses: (state) => state.records.statuses,
       checkedStatuses: (state) => state.records.filter.statuses
-    }),
-    searchQuery: {
-      get() {
-        return this.$store.state.records.filter.search
-      },
-      set(value) {
-        this.$store.dispatch('records/updateSearch', value)
-      }
-    }
+    })
   },
   methods: {
     ...mapActions({ updateFilterStatus: 'records/updateFilterStatus' }),
@@ -69,7 +65,10 @@ export default {
       this.updateFilterStatus(status)
     },
     search() {
-      this.$store.dispatch('records/fetchFiltered')
+      this.$store.dispatch('records/findRecords')
+    },
+    updateSearchQuery() {
+      this.$store.dispatch('records/updateSearch', this.searchQuery)
     }
   }
 }

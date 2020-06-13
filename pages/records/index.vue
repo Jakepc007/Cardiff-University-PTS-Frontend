@@ -1,7 +1,11 @@
 <template>
   <div class="container">
-    <Filters :records="records" />
-    <RecordList :records="filtered" />
+    <v-lazy>
+      <Filters :records="records" />
+    </v-lazy>
+    <v-lazy>
+      <RecordList :records="records" />
+    </v-lazy>
   </div>
 </template>
 
@@ -19,11 +23,11 @@ export default {
     try {
       await store.dispatch('alerts/fetchAlert')
       await store.dispatch('records/fetchRecords')
-      await store.dispatch('records/fetchFiltered')
+      await store.dispatch('records/findRecords')
     } catch (e) {
       error({
         statusCode: 503,
-        message: 'Unable to fetch events at this time'
+        message: 'Unable to fetch any data from the server'
       })
     }
   },
@@ -34,11 +38,9 @@ export default {
   },
   computed: {
     ...mapState({
-      records: (state) => state.records.records,
-      filtered: (state) => state.records.filtered
+      records: (state) => state.records.paged
     })
-  },
-  methods: {}
+  }
 }
 </script>
 
