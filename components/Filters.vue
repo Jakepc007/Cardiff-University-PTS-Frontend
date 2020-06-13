@@ -1,39 +1,37 @@
 <template>
-  <v-lazy transition="fade-transition">
-    <v-card outlined class="filter">
-      <v-text-field
-        v-model="searchQuery"
-        label="Search by title or description"
-        style="margin-bottom: 1rem"
-        :hide-details="true"
-        @input="updateSearchQuery"
-      ></v-text-field>
-      <!-- <div class="filter-title">Status:</div> -->
-      <div class="grid filter-content">
-        <div
-          v-for="(status, index) in statuses"
-          :key="index"
-          class="filter-container"
-        >
-          <v-checkbox
-            v-model="checkedStatuses"
-            style="display: inline"
-            :value="status"
-            type="checkbox"
-            :label="status"
-            :hide-details="true"
-            @change="filterStatus(status)"
-          />
-          <!-- <span class="amount">{{
+  <v-card outlined class="filter">
+    <v-text-field
+      v-model="searchQuery"
+      label="Search by title or description"
+      style="margin-bottom: 1rem"
+      :hide-details="true"
+      @input="updateSearchQuery"
+    ></v-text-field>
+    <!-- <div class="filter-title">Status:</div> -->
+    <div class="grid filter-content">
+      <div
+        v-for="(status, index) in statuses"
+        :key="index"
+        class="filter-container"
+      >
+        <v-checkbox
+          v-model="checkedStatuses"
+          style="display: inline"
+          :value="status"
+          type="checkbox"
+          :label="status"
+          :hide-details="true"
+          @change="filterStatus(status)"
+        />
+        <!-- <span class="amount">{{
             records.filter((r) => r.status === status).length
           }}</span> -->
-        </div>
       </div>
-    </v-card>
-    <!-- <div class="btn-container">
+    </div>
+  </v-card>
+  <!-- <div class="btn-container">
       <v-btn @click="search">Search</v-btn>
     </div> -->
-  </v-lazy>
 </template>
 
 <script>

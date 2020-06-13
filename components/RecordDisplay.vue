@@ -1,21 +1,13 @@
 <template>
   <div>
-    <v-lazy transition="scroll-x-transition">
-      <nuxt-link to="/records"><v-icon large>mdi-arrow-left</v-icon></nuxt-link>
-    </v-lazy>
-    <v-lazy
-      :options="{
-        threshold: 1
-      }"
-      transition="fade-transition"
-    >
-      <div class="record-display">
-        <p>{{ record.title }}</p>
-        <p class="grey--text text--darken-2">
-          {{ record.desc }}
-        </p>
-      </div>
-    </v-lazy>
+    <nuxt-link to="/records"><v-icon large>mdi-arrow-left</v-icon></nuxt-link>
+
+    <div class="record-display">
+      <p>{{ record.title }}</p>
+      <p class="grey--text text--darken-2">
+        {{ record.desc }}
+      </p>
+    </div>
   </div>
 </template>
 

@@ -1,30 +1,32 @@
 <template>
   <nav>
-    <v-app-bar flat color="white">
-      <!-- consider passing CU svg here -->
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <!-- <img
+    <v-lazy>
+      <v-app-bar flat color="white">
+        <!-- consider passing CU svg here -->
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+        <!-- <img
         style="width: 50px; margin-right: 1rem"
         src="~/assets/logo.png"
         @click="drawer = !drawer"
       /> -->
 
-      <v-toolbar-title
-        >Research Pipeline : School of Engineering
-      </v-toolbar-title>
+        <v-toolbar-title
+          >Research Pipeline : School of Engineering
+        </v-toolbar-title>
 
-      <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
 
-      <v-btn depressed class="create-new-record-desktop">
-        Create New Record
-        <v-icon>mdi-plus</v-icon>
-      </v-btn>
+        <v-btn depressed class="create-new-record-desktop">
+          Create New Record
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
 
-      <v-btn depressed class="create-new-record-mobile">
-        Create
-        <v-icon>mdi-plus</v-icon>
-      </v-btn>
-    </v-app-bar>
+        <v-btn depressed class="create-new-record-mobile">
+          Create
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </v-app-bar>
+    </v-lazy>
 
     <v-navigation-drawer v-model="drawer" width="400" temporary app>
       <div class="img-and-title-header">

@@ -1,11 +1,7 @@
 <template>
   <div class="container">
-    <v-lazy>
-      <Filters :records="records" />
-    </v-lazy>
-    <v-lazy>
-      <RecordList :records="records" />
-    </v-lazy>
+    <Filters :records="records" />
+    <RecordList :records="records" />
   </div>
 </template>
 

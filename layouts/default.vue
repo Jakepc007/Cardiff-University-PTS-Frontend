@@ -2,7 +2,16 @@
   <v-app class="layout">
     <NavBar />
     <Alert :alert="alert" />
-    <nuxt class="app" />
+    <v-lazy transition="scroll-x-transition">
+      <transition name="fade" mode="in-out" transition="scroll-x-transition">
+        <nuxt class="app" />
+      </transition>
+    </v-lazy>
+
+    <!-- Changes everything to scroll in from the left automatically -->
+    <!-- <v-lazy transition="scroll-y-transition">
+      <nuxt class="app" />
+    </v-lazy> -->
   </v-app>
 </template>
 
@@ -42,6 +51,21 @@ export default {
 <style lang="scss">
 .container {
   padding: 2px;
+}
+
+.fade-enter {
+  opacity: 0;
+  // filter: blur(200px);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-out;
+  // transition: filter 0.5s ease-out;
+}
+
+.fade-leave-to {
+  opacity: 0;
 }
 
 .v-application--wrap {

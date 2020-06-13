@@ -1,7 +1,7 @@
 <template>
   <v-hover>
     <template v-slot="{ hover }">
-      <v-lazy transition="">
+      <div>
         <v-card class="record-card" ripple outlined :elevation="hover ? 2 : 0">
           <router-link :to="{ path: 'records/' + r.id }">
             <v-list-item three-line>
@@ -15,7 +15,7 @@
             </v-list-item>
           </router-link>
         </v-card>
-      </v-lazy>
+      </div>
     </template>
   </v-hover>
 </template>
