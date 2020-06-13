@@ -86,6 +86,8 @@ export default {
   @media only screen and (min-width: 900px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  align-items: center;
 }
 
 .filter-title {
