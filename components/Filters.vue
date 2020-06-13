@@ -6,7 +6,6 @@
         label="Search by title or description"
         style="margin-bottom: 1rem"
         :hide-details="true"
-        @input="updateSearch()"
       ></v-text-field>
       <!-- <div class="filter-title">Status:</div> -->
       <div class="grid filter-content">
@@ -22,7 +21,6 @@
             type="checkbox"
             :label="status"
             :hide-details="true"
-            @change="filterStatus(status)"
           />
           <!-- <span class="amount">{{
             records.filter((r) => r.status === status).length
@@ -49,15 +47,21 @@ export default {
     }
   },
   data() {
-    return {
-      searchQuery: ''
-    }
+    return {}
   },
   computed: {
     ...mapState({
       statuses: (state) => state.records.statuses,
       checkedStatuses: (state) => state.records.filter.statuses
-    })
+    }),
+    searchQuery: {
+      get() {
+        return this.$store.state.records.filter.search
+      },
+      set(value) {
+        this.$store.dispatch('records/updateSearch', value)
+      }
+    }
   },
   methods: {
     ...mapActions({ updateFilterStatus: 'records/updateFilterStatus' }),
@@ -66,9 +70,6 @@ export default {
     },
     search() {
       this.$store.dispatch('records/fetchFiltered')
-    },
-    updateSearch() {
-      this.$store.dispatch('records/updateSearch', this.searchQuery)
     }
   }
 }
