@@ -16,15 +16,17 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn depressed class="create-new-record-desktop">
-          Create New Record
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
+        <nuxt-link to="records/create">
+          <v-btn depressed class="create-new-record-desktop">
+            Create New Record
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
 
-        <v-btn depressed class="create-new-record-mobile">
-          Create
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
+          <v-btn depressed class="create-new-record-mobile">
+            Create
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </nuxt-link>
       </v-app-bar>
     </v-lazy>
 
@@ -80,5 +82,9 @@ export default {
 
 .v-navigation-drawer {
   padding: 1rem;
+}
+
+a {
+  text-decoration: none;
 }
 </style>
