@@ -1,26 +1,26 @@
 <template>
   <div class="container">
     <div class="mb-2 text-h6 font-weight-bold">
-      Step <span style="color: red">{{ step }}</span> |
-      <span v-if="step === 1">
+      Page <span style="color: red">{{ page }}</span> |
+      <span v-if="page === 1">
         Details
         <v-icon color="black" class="mr-1">mdi-form-select</v-icon>
       </span>
-      <span v-if="step === 2">
+      <span v-if="page === 2">
         Investigators
         <v-icon color="black" class="mr-1">mdi-account-multiple</v-icon>
       </span>
-      <span v-if="step === 3">
+      <span v-if="page === 3">
         Date and Time
         <v-icon color="black" class="mr-1">mdi-clock</v-icon>
       </span>
-      <span v-if="step === 4">
+      <span v-if="page === 4">
         Pricing
         <v-icon color="black" class="mr-1">mdi-cash</v-icon>
       </span>
     </div>
     <v-progress-linear
-      :value="step * 25"
+      :value="page * 25"
       height="6"
       rounded
       class="mb-4"
@@ -32,10 +32,10 @@
       <v-text-field label="Comments"></v-text-field>
     </v-card>
     <div class="d-flex justify-space-around">
-      <v-btn :disabled="step === 1" @click="prev">
+      <v-btn :disabled="page === 1" @click="prev">
         <v-icon>mdi-chevron-left</v-icon>
       </v-btn>
-      <v-btn :disabled="step === 4" @click="next">
+      <v-btn :disabled="page === 4" @click="next">
         <v-icon>mdi-chevron-right</v-icon>
       </v-btn>
     </div>
@@ -43,18 +43,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  data() {
-    return {
-      step: 1
-    }
+  computed: {
+    ...mapState({
+      page: (state) => state.form.page
+    })
   },
   methods: {
     next() {
-      this.step += this.step > 4 ? 0 : 1
+      this.$store.dispatch('form/nextPage')
     },
     prev() {
-      this.step -= this.step === 1 ? 0 : 1
+      this.$store.dispatch('form/prevPage')
     }
   }
 }
