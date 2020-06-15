@@ -1,5 +1,4 @@
 <template>
-
   <nav>
     <v-lazy>
       <v-app-bar flat color="white">
@@ -11,23 +10,43 @@
         @click="drawer = !drawer"
       /> -->
 
-        <v-toolbar-title
-          >Research Pipeline : School of Engineering
-        </v-toolbar-title>
-
+        <nuxt-link to="/records">
+          <v-toolbar-title>
+            <div class="d-flex" style="height: 100%">
+              <v-img src="~/assets/logo.png" @click="drawer = !drawer"></v-img>
+              <span>Research Pipeline : School of Engineering</span>
+            </div>
+          </v-toolbar-title>
+        </nuxt-link>
         <v-spacer></v-spacer>
 
-        <nuxt-link to="records/create">
-          <v-btn depressed class="create-new-record-desktop">
-            Create New Record
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
+        <div v-if="!createState">
+          <nuxt-link to="/records/create">
+            <v-btn depressed class="create-new-record-desktop">
+              Create New Record
+              <v-icon>mdi-plus</v-icon>
+            </v-btn>
 
-          <v-btn depressed class="create-new-record-mobile">
-            Create
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
-        </nuxt-link>
+            <v-btn depressed class="create-new-record-mobile">
+              Create
+              <v-icon>mdi-plus</v-icon>
+            </v-btn>
+          </nuxt-link>
+        </div>
+
+        <div v-if="createState">
+          <nuxt-link to="/records">
+            <v-btn depressed class="create-new-record-desktop">
+              <v-icon>mdi-arrow-left</v-icon>
+              Back
+            </v-btn>
+
+            <v-btn depressed class="create-new-record-mobile">
+              <v-icon>mdi-arrow-left</v-icon>
+              Back
+            </v-btn>
+          </nuxt-link>
+        </div>
       </v-app-bar>
     </v-lazy>
 
@@ -60,6 +79,16 @@ export default {
       drawer: false
     }
   },
+  computed: {
+    createState() {
+      const r = this.$route.path
+      if (r === '/records/create') {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
   methods: {
     toggleDrawer() {
       this.drawer = !this.drawer
@@ -87,5 +116,6 @@ export default {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 </style>

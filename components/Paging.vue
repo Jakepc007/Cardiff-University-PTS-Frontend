@@ -24,6 +24,7 @@ export default {
       filteredLength: (state) => state.records.filtered.length
     }),
     pageCount() {
+      // Returns the page count
       return Math.floor((this.filteredLength - 1) / 5) + 1
     }
   },

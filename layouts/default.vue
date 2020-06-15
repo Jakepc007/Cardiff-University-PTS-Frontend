@@ -3,10 +3,12 @@
     <NavBar />
     <Alert :alert="alert" />
     <v-lazy transition="scroll-x-transition">
-      <transition name="fade" mode="in-out" transition="scroll-x-transition">
+      <transition name="fade" mode="out-in" transition="scroll-x-transition">
         <nuxt class="app" />
       </transition>
     </v-lazy>
+
+    {{ createState }}
 
     <!-- Changes everything to scroll in from the left automatically -->
     <!-- <v-lazy transition="scroll-y-transition">
@@ -60,7 +62,7 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease-out;
+  transition: all 0.3s ease-in-out;
   // transition: filter 0.5s ease-out;
 }
 
