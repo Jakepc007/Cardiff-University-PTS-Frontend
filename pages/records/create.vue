@@ -1,37 +1,7 @@
 <template>
   <div class="container">
     <ToggleContainer @toggleInputMode="toggleInputMode" />
-    <div
-      v-if="inputMode === 'form'"
-      class="-mt-2 mb-2 text-h6 font-weight-bold"
-      style="margin-top: -2rem"
-    >
-      Page <span style="color: red">{{ page }}</span> |
-      <span v-if="page === 1">
-        Details
-        <v-icon color="black" class="mr-1">mdi-form-select</v-icon>
-      </span>
-      <span v-if="page === 2">
-        Investigators
-        <v-icon color="black" class="mr-1">mdi-account-multiple</v-icon>
-      </span>
-      <span v-if="page === 3">
-        Date and Time
-        <v-icon color="black" class="mr-1">mdi-clock</v-icon>
-      </span>
-      <span v-if="page === 4">
-        Pricing
-        <v-icon color="black" class="mr-1">mdi-cash</v-icon>
-      </span>
-    </div>
-
-    <div
-      v-if="inputMode === 'entry'"
-      class="-mt-2 mb-2 text-h6 font-weight-bold"
-      style="margin-top: -2rem"
-    >
-      Enter your application details below
-    </div>
+    <FormHeader :input-mode="inputMode" :page="page" />
 
     <v-progress-linear
       v-if="inputMode === 'form'"
@@ -126,10 +96,12 @@
 <script>
 import { mapState } from 'vuex'
 import ToggleContainer from '@/components/Records/Create/InputModeToggle'
+import FormHeader from '@/components/Records/Create/FormHeader'
 
 export default {
   components: {
-    ToggleContainer
+    ToggleContainer,
+    FormHeader
   },
   data() {
     return {
@@ -160,12 +132,8 @@ export default {
       this.$store.dispatch('form/submit')
       this.$router.push('/records')
     },
-    hello() {
-      console.log('ok')
-    },
     updateProgress(label) {
       if (!this.entryProgressSet.has(label)) {
-        console.log(this.entryProgressSet.size)
         this.entryProgress =
           ((1 + this.entryProgressSet.size) / this.formCount) * 100
         this.entryProgressSet.add(label)
