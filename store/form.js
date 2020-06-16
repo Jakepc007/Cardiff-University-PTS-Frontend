@@ -27,6 +27,7 @@ export const state = () => ({
     }
   },
   page: 1,
+  formCount: 14,
   inProgress: false
 })
 
