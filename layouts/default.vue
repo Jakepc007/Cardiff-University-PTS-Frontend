@@ -8,8 +8,6 @@
       </transition>
     </v-lazy>
 
-    {{ createState }}
-
     <!-- Changes everything to scroll in from the left automatically -->
     <!-- <v-lazy transition="scroll-y-transition">
       <nuxt class="app" />
@@ -26,21 +24,6 @@ export default {
   components: {
     Alert,
     NavBar
-  },
-  // The fetch here, allows dispatching of VueX actions,
-  // which then retrieve the most recent alert, and can
-  // then plug that into the layout
-  async fetch({ store, error }) {
-    try {
-      await store.dispatch('alerts/fetchAlert')
-      //   await store.dispatch('records/fetchRecords')
-      //   await store.dispatch('records/findRecords')
-    } catch (e) {
-      error({
-        statusCode: 503,
-        message: 'Unable to fetch the alert'
-      })
-    }
   },
   computed: {
     ...mapState({
