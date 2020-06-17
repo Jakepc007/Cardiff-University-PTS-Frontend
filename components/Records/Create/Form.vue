@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import VarInput from '@/components/Records/Create/VarInput'
 
 export default {
@@ -93,17 +94,26 @@ export default {
       default() {}
     }
   },
-  data() {
-    return {
-      set: new Set(),
-      progress: 0
-    }
+  computed: {
+    ...mapState({
+      inputsComplete: (state) => state.form.inputsComplete,
+      progress: (state) => state.form.progress
+    })
   },
   methods: {
+    ...mapActions({ addInput: 'form/addInput' }),
     updateProgress(label) {
-      this.set.add(label)
-      this.progress = (this.set.size / 6) * 100
-      this.$emit('updateProgressBar', this.progress)
+      if (!this.inputsComplete.includes(label)) this.addInput(label)
+
+      // if (this.inputsComplete.includes(label)) {
+      //   console.log('cool')
+      // } else {
+      //   console.log('doesnt include')
+      //   this.inputsComplete.push(label)
+      // }
+      // this.sete.add(label)
+      // this.progress = (this.set.size / 6) * 100
+      // this.$emit('updateProgressBar', this.progress)
     }
   }
 }

@@ -10,7 +10,12 @@ export const state = () => ({
         hint: 'The applications current status',
         type: 'select',
         // TODO fetch these from state (less error prone)
-        options: ['Just a thought', 'Ready for submission']
+        options: [
+          'Just a thought',
+          'Preparing Documents',
+          'Ready for submission',
+          'Awarded'
+        ]
       },
       {
         label: 'description',
@@ -32,8 +37,10 @@ export const state = () => ({
       }
     ]
   },
+  inputsComplete: [],
+  progress: 0,
   page: 1,
-  formCount: 14,
+  formCount: 6,
   inProgress: false
 })
 
@@ -56,6 +63,12 @@ export const mutations = {
         state.form.investigators[pos].value = newValue
         break
     }
+  },
+  ADD_INPUT(state, label) {
+    state.inputsComplete.push(label)
+  },
+  SET_PROGRESS(state, progress) {
+    state.progress = progress
   }
 }
 
@@ -77,6 +90,16 @@ export const actions = {
         break
     }
     commit('UPDATE_FORM', { newValue, page, pos })
+  },
+  addInput({ commit, state }, label) {
+    commit('ADD_INPUT', label)
+    const progress = (state.inputsComplete.length / state.formCount) * 100
+    commit('SET_PROGRESS', progress)
+  },
+  submit() {
+    // TODO form submission (perhaps just pop the form state
+    // into a post request and then reset this state)
+    console.log('NYI 🤷‍♀️')
   }
 }
 

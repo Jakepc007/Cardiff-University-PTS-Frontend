@@ -2,17 +2,8 @@
   <div class="container">
     <ToggleContainer @toggleInputMode="toggleInputMode" />
     <FormHeader :input-mode="inputMode" :page="page" />
-    <FormProgressBar
-      :input-mode="inputMode"
-      :page="page"
-      :entry-progress="entryProgress"
-    />
-    <Form
-      :input-mode="inputMode"
-      :page="page"
-      :form="form"
-      @updateProgressBar="updateProgressBar"
-    />
+    <FormProgressBar :input-mode="inputMode" :page="page" />
+    <Form :input-mode="inputMode" :page="page" :form="form" />
 
     <div v-if="inputMode === 'form'" class="d-flex justify-space-around">
       <v-btn
@@ -69,14 +60,14 @@ export default {
     return {
       form: this.$store.state.form.form,
       // Either entry or form
-      inputMode: 'form',
-      entryProgress: 0
+      inputMode: 'form'
     }
   },
   computed: {
     ...mapState({
       page: (state) => state.form.page,
-      formCount: (state) => state.form.formCount
+      formCount: (state) => state.form.formCount,
+      entryProgress: (state) => state.form.progress
     })
   },
   methods: {
@@ -92,9 +83,6 @@ export default {
     },
     toggleInputMode(value) {
       this.inputMode = value
-    },
-    updateProgressBar(progress) {
-      this.entryProgress = progress
     }
   }
 }
