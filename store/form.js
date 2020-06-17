@@ -1,3 +1,5 @@
+import EventService from '@/services/EventService'
+
 export const state = () => ({
   form: {
     details: [
@@ -96,10 +98,19 @@ export const actions = {
     const progress = (state.inputsComplete.length / state.formCount) * 100
     commit('SET_PROGRESS', progress)
   },
-  submit() {
-    // TODO form submission (perhaps just pop the form state
-    // into a post request and then reset this state)
-    console.log('NYI 🤷‍♀️')
+  submit({ commit, state }) {
+    const newForm = {}
+
+    // Combine pages to a simple array
+    const combined = [...state.form.details, ...state.form.people]
+    combined.forEach((input) => {
+      newForm[input.label] = input.value
+    })
+
+    // Post the the form to the api
+    return EventService.submitForm(newForm).then(() => {
+      commit('records/ADD_RECORD', newForm, { root: true })
+    })
   }
 }
 

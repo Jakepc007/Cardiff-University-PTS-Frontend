@@ -79,8 +79,7 @@ export default {
       this.$store.dispatch('form/prevPage')
     },
     submit() {
-      this.$store.dispatch('form/submit')
-      this.$router.push('/records')
+      this.$store.dispatch('form/submit').then(this.$router.push('/records'))
     },
     toggleInputMode(value) {
       this.inputMode = value

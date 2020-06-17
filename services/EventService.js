@@ -18,5 +18,8 @@ export default {
   },
   getRecords() {
     return apiClient.get('/records')
+  },
+  submitForm(form) {
+    return apiClient.post('records/', form)
   }
 }

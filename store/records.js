@@ -16,7 +16,8 @@ export const state = () => ({
   },
   filterActive: false,
   page: 1,
-  paged: []
+  paged: [],
+  recentRecord: {}
 })
 
 export const mutations = {
@@ -48,6 +49,15 @@ export const mutations = {
   },
   SET_RECORDS_FOR_PAGE(state, records) {
     state.paged = records
+  },
+  ADD_RECORD(state, record) {
+    console.log('ES: ', record)
+
+    state.recentRecord = record
+    state.records.push(record)
+  },
+  REMOVE_RECENT_DISPLAY(state) {
+    state.recentRecord = {}
   }
 }
 
@@ -90,6 +100,9 @@ export const actions = {
   updatePage({ commit, dispatch }, page) {
     commit('SET_PAGE', page)
     dispatch('findRecords')
+  },
+  removeRecentDisplay({ commit }) {
+    commit('REMOVE_RECENT_DISPLAY')
   }
 }
 

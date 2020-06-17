@@ -1,6 +1,7 @@
 <template>
   <v-app class="layout">
     <NavBar />
+    {{ posts }}
     <Alert :alert="alert" />
     <v-lazy transition="scroll-x-transition">
       <transition name="fade" mode="out-in" transition="scroll-x-transition">
@@ -27,9 +28,18 @@ export default {
     Alert,
     NavBar
   },
+  data() {
+    return {}
+  },
   computed: {
     ...mapState({
       alert: (state) => state.alerts.alert
+    })
+  },
+  created() {
+    this.$store.dispatch('alerts/fetchAlert', {
+      perPage: this.perPage,
+      page: this.page
     })
   }
 }
