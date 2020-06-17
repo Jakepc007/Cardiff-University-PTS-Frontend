@@ -7,7 +7,12 @@
       :page="page"
       :entry-progress="entryProgress"
     />
-    <Form :input-mode="inputMode" :page="page" :form="form" />
+    <Form
+      :input-mode="inputMode"
+      :page="page"
+      :form="form"
+      @updateProgressBar="updateProgressBar"
+    />
 
     <div v-if="inputMode === 'form'" class="d-flex justify-space-around">
       <v-btn
@@ -33,7 +38,13 @@
     </div>
 
     <div v-if="inputMode === 'entry'" class="d-flex justify-space-around">
-      <v-btn min-width="100" max-width="100" color="success" @click="submit">
+      <v-btn
+        min-width="100"
+        max-width="100"
+        :disabled="entryProgress !== 100"
+        color="success"
+        @click="submit"
+      >
         Submit
       </v-btn>
     </div>
@@ -59,7 +70,6 @@ export default {
       form: this.$store.state.form.form,
       // Either entry or form
       inputMode: 'form',
-      entryProgressSet: new Set(),
       entryProgress: 0
     }
   },
@@ -80,15 +90,11 @@ export default {
       this.$store.dispatch('form/submit')
       this.$router.push('/records')
     },
-    updateProgress(label) {
-      if (!this.entryProgressSet.has(label)) {
-        this.entryProgress =
-          ((1 + this.entryProgressSet.size) / this.formCount) * 100
-        this.entryProgressSet.add(label)
-      }
-    },
     toggleInputMode(value) {
       this.inputMode = value
+    },
+    updateProgressBar(progress) {
+      this.entryProgress = progress
     }
   }
 }

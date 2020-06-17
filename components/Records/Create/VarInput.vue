@@ -37,6 +37,7 @@ export default {
         const label = this.input.label
         const page = this.page
         this.$store.dispatch('form/update', { label, newValue, page })
+        this.$emit('updateProgress', label)
       }
     }
   },

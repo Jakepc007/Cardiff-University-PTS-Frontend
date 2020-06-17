@@ -11,9 +11,9 @@
 
     <v-progress-linear
       v-if="inputMode === 'entry'"
+      :color="entryProgress === 100 ? 'success' : 'red'"
       :value="entryProgress"
       height="6"
-      color="red"
       rounded
       class="mb-4"
     ></v-progress-linear>

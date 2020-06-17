@@ -3,38 +3,32 @@ export const state = () => ({
     details: [
       {
         label: 'title',
-        type: 'text',
-        value: 'delet this'
+        type: 'text'
       },
       {
         label: 'status',
         hint: 'The applications current status',
-        value: '',
         type: 'select',
         // TODO fetch these from state (less error prone)
         options: ['Just a thought', 'Ready for submission']
       },
       {
         label: 'description',
-        type: 'text',
-        value: ''
+        type: 'text'
       },
       {
         label: 'scheme',
-        type: 'text',
-        value: ''
+        type: 'text'
       }
     ],
     investigators: [
       {
         label: 'principal investigator',
-        type: 'text',
-        value: ''
+        type: 'text'
       },
       {
         label: 'co-investigators',
-        type: 'text',
-        value: ''
+        type: 'text'
       }
     ]
   },

@@ -7,6 +7,7 @@
           :key="input.label"
           :input="input"
           page="details"
+          @updateProgress="updateProgress"
         />
       </div>
       <div v-else-if="page === 2">
@@ -15,8 +16,34 @@
           :key="input.label"
           :input="input"
           page="investigators"
+          @updateProgress="updateProgress"
         />
       </div>
+    </v-card>
+
+    <v-card v-if="inputMode === 'entry'" flat outlined class="pa-4 mb-6">
+      <div>
+        <v-icon color="black" class="mr-1">mdi-form-select</v-icon>
+        Details
+      </div>
+      <VarInput
+        v-for="input in form.details"
+        :key="input.label"
+        :input="input"
+        page="details"
+        @updateProgress="updateProgress"
+      />
+      <div>
+        <v-icon color="black" class="mr-1">mdi-account-multiple</v-icon>
+        Investigators
+      </div>
+      <VarInput
+        v-for="input in form.investigators"
+        :key="input.label"
+        :input="input"
+        page="investigators"
+        @updateProgress="updateProgress"
+      />
     </v-card>
 
     <!-- <v-card v-if="inputMode === 'entry'" flat outlined class="pa-4 mb-6">
@@ -64,6 +91,19 @@ export default {
     form: {
       type: Object,
       default() {}
+    }
+  },
+  data() {
+    return {
+      set: new Set(),
+      progress: 0
+    }
+  },
+  methods: {
+    updateProgress(label) {
+      this.set.add(label)
+      this.progress = (this.set.size / 6) * 100
+      this.$emit('updateProgressBar', this.progress)
     }
   }
 }
