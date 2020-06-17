@@ -3,6 +3,9 @@
     <ToggleContainer @toggleInputMode="toggleInputMode" />
     <FormHeader :input-mode="inputMode" :page="page" />
     <FormProgressBar :input-mode="inputMode" :page="page" />
+
+    <Form :input-mode="inputMode" :page="page" :form="form" />
+
     <div v-if="inputMode === 'form'" class="d-flex justify-space-around mb-4">
       <v-btn
         :disabled="page === 1"
@@ -37,7 +40,6 @@
         Submit
       </v-btn>
     </div>
-    <Form :input-mode="inputMode" :page="page" :form="form" />
   </div>
 </template>
 
@@ -93,7 +95,7 @@ export default {
   margin-top: 3rem;
 
   @media only screen and (min-width: 900px) {
-    width: 50%;
+    width: 60%;
   }
 }
 </style>

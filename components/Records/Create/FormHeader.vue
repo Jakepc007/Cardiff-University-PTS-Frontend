@@ -5,13 +5,13 @@
       class="-mt-2 mb-2 text-h6 font-weight-bold"
       style="margin-top: -2rem"
     >
-      Page <span style="color: red">{{ page }}</span> |
+      Step <span style="color: red">{{ page }}</span> |
       <span v-if="page === 1">
         Details
         <v-icon color="black" class="mr-1">mdi-form-select</v-icon>
       </span>
       <span v-if="page === 2">
-        Investigators
+        People
         <v-icon color="black" class="mr-1">mdi-account-multiple</v-icon>
       </span>
       <span v-if="page === 3">
@@ -27,9 +27,12 @@
     <h3
       v-if="inputMode === 'entry'"
       class="-mt-2 mb-2 text-h6 font-weight-bold"
-      style="margin-top: -2rem"
+      style="margin-top: -2rem;"
     >
       Enter your application details below
+      <v-icon v-if="progress === 100" color="success" class="mr-1">
+        mdi-check
+      </v-icon>
     </h3>
   </div>
 </template>
@@ -44,6 +47,11 @@ export default {
     inputMode: {
       default: 'form',
       type: String
+    }
+  },
+  computed: {
+    progress() {
+      return this.$store.state.form.progress
     }
   }
 }

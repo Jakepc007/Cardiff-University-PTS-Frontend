@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card v-if="inputMode === 'form'" flat outlined class="pa-4 mb-6">
+    <div v-if="inputMode === 'form'" class="pt-2">
       <div v-if="page === 1">
         <VarInput
           v-for="input in form.details"
@@ -12,17 +12,17 @@
       </div>
       <div v-else-if="page === 2">
         <VarInput
-          v-for="input in form.investigators"
+          v-for="input in form.people"
           :key="input.label"
           :input="input"
-          page="investigators"
+          page="people"
           @updateProgress="updateProgress"
         />
       </div>
-    </v-card>
+    </div>
 
-    <v-card v-if="inputMode === 'entry'" flat outlined class="pa-4 mb-6">
-      <h3>
+    <div v-if="inputMode === 'entry'" class="pt-2">
+      <h3 class="mb-2">
         <v-icon color="black" class="mr-1">mdi-form-select</v-icon>
         Details
       </h3>
@@ -33,18 +33,18 @@
         page="details"
         @updateProgress="updateProgress"
       />
-      <h3>
+      <h3 class="mb-2">
         <v-icon color="black" class="mr-1">mdi-account-multiple</v-icon>
-        Investigators
+        People
       </h3>
       <VarInput
-        v-for="input in form.investigators"
+        v-for="input in form.people"
         :key="input.label"
         :input="input"
-        page="investigators"
+        page="people"
         @updateProgress="updateProgress"
       />
-    </v-card>
+    </div>
 
     <!-- <v-card v-if="inputMode === 'entry'" flat outlined class="pa-4 mb-6">
       <div>
@@ -61,10 +61,10 @@
       ></v-text-field>
       <div>
         <v-icon color="black" class="mr-1">mdi-account-multiple</v-icon>
-        Investigators
+        people
       </div>
       <v-text-field
-        v-for="input in form.investigators"
+        v-for="input in form.people"
         :key="input.label"
         :label="capitalize(input.label)"
         :value="input.value"

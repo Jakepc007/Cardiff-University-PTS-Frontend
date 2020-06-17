@@ -12,7 +12,7 @@ export const state = () => ({
   ],
   filter: {
     search: '',
-    statuses: ['Just a thought', 'Ready for submission', 'Awarded']
+    statuses: []
   },
   filterActive: false,
   page: 1,

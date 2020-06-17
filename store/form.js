@@ -26,13 +26,13 @@ export const state = () => ({
         type: 'text'
       }
     ],
-    investigators: [
+    people: [
       {
         label: 'principal investigator',
         type: 'text'
       },
       {
-        label: 'co-investigators',
+        label: 'co-people',
         type: 'text'
       }
     ]
@@ -59,8 +59,8 @@ export const mutations = {
       case 'details':
         state.form.details[pos].value = newValue
         break
-      case 'investigators':
-        state.form.investigators[pos].value = newValue
+      case 'people':
+        state.form.people[pos].value = newValue
         break
     }
   },
@@ -85,8 +85,8 @@ export const actions = {
       case 'details':
         pos = findPos(state.form.details, label)
         break
-      case 'investigators':
-        pos = findPos(state.form.investigators, label)
+      case 'people':
+        pos = findPos(state.form.people, label)
         break
     }
     commit('UPDATE_FORM', { newValue, page, pos })

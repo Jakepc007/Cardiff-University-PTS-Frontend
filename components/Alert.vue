@@ -1,12 +1,12 @@
 <template>
   <v-lazy transition="scroll-y-transition">
-    <div class="alert" :class="alert.level">
+    <v-card class="alert" tile flat :class="alert.level">
       {{ alert.alert }}.
       <span>
-        Please provide rovide feedback for us
+        Please provide feedback for us
         <span class="feedback-prompt">here</span></span
       >
-    </div>
+    </v-card>
   </v-lazy>
 </template>
 

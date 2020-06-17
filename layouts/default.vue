@@ -4,7 +4,9 @@
     <Alert :alert="alert" />
     <v-lazy transition="scroll-x-transition">
       <transition name="fade" mode="out-in" transition="scroll-x-transition">
-        <nuxt class="app" />
+        <v-container>
+          <nuxt class="app" />
+        </v-container>
       </transition>
     </v-lazy>
 
