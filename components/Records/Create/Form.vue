@@ -22,10 +22,10 @@
     </v-card>
 
     <v-card v-if="inputMode === 'entry'" flat outlined class="pa-4 mb-6">
-      <div>
+      <h3>
         <v-icon color="black" class="mr-1">mdi-form-select</v-icon>
         Details
-      </div>
+      </h3>
       <VarInput
         v-for="input in form.details"
         :key="input.label"
@@ -33,10 +33,10 @@
         page="details"
         @updateProgress="updateProgress"
       />
-      <div>
+      <h3>
         <v-icon color="black" class="mr-1">mdi-account-multiple</v-icon>
         Investigators
-      </div>
+      </h3>
       <VarInput
         v-for="input in form.investigators"
         :key="input.label"

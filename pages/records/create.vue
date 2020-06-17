@@ -3,9 +3,7 @@
     <ToggleContainer @toggleInputMode="toggleInputMode" />
     <FormHeader :input-mode="inputMode" :page="page" />
     <FormProgressBar :input-mode="inputMode" :page="page" />
-    <Form :input-mode="inputMode" :page="page" :form="form" />
-
-    <div v-if="inputMode === 'form'" class="d-flex justify-space-around">
+    <div v-if="inputMode === 'form'" class="d-flex justify-space-around mb-4">
       <v-btn
         :disabled="page === 1"
         min-width="100"
@@ -28,7 +26,7 @@
       </v-btn>
     </div>
 
-    <div v-if="inputMode === 'entry'" class="d-flex justify-space-around">
+    <div v-if="inputMode === 'entry'" class="d-flex justify-space-around mb-4">
       <v-btn
         min-width="100"
         max-width="100"
@@ -39,6 +37,7 @@
         Submit
       </v-btn>
     </div>
+    <Form :input-mode="inputMode" :page="page" :form="form" />
   </div>
 </template>
 

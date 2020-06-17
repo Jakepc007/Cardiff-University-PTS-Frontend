@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <Filters :records="records" />
+    <h2>Your Records</h2>
     <RecordList :records="records" />
   </div>
 </template>

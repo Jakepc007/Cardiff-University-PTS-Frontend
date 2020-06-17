@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div
+    <h3
       v-if="inputMode === 'form'"
       class="-mt-2 mb-2 text-h6 font-weight-bold"
       style="margin-top: -2rem"
@@ -22,15 +22,15 @@
         Pricing
         <v-icon color="black" class="mr-1">mdi-cash</v-icon>
       </span>
-    </div>
+    </h3>
 
-    <div
+    <h3
       v-if="inputMode === 'entry'"
       class="-mt-2 mb-2 text-h6 font-weight-bold"
       style="margin-top: -2rem"
     >
       Enter your application details below
-    </div>
+    </h3>
   </div>
 </template>
 

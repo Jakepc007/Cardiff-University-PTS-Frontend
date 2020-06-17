@@ -1,13 +1,15 @@
 <template>
-  <v-card outlined class="filter">
+  <div outlined class="filter">
+    <h2>Filter</h2>
     <v-text-field
       v-model="searchQuery"
       label="Search by title or description"
       style="margin-bottom: 1rem"
       :hide-details="true"
+      solo
       @input="updateSearchQuery"
     ></v-text-field>
-    <!-- <div class="filter-title">Status:</div> -->
+    <!-- <h4>Status</h4> -->
     <div class="grid filter-content">
       <div
         v-for="(status, index) in statuses"
@@ -28,7 +30,7 @@
           }}</span> -->
       </div>
     </div>
-  </v-card>
+  </div>
   <!-- <div class="btn-container">
       <v-btn @click="search">Search</v-btn>
     </div> -->
@@ -75,14 +77,13 @@ export default {
 <style lang="scss">
 .filter {
   margin-bottom: 2rem;
-  padding: 1rem;
+  // padding: 1rem;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-
   @media only screen and (min-width: 900px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
@@ -104,7 +105,7 @@ export default {
 }
 
 .filter-container {
-  background: rgb(255, 236, 236);
-  background: white;
+  // background: rgb(255, 236, 236);
+  // background: white;
 }
 </style>
