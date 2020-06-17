@@ -6,13 +6,15 @@
           v-for="input in form.details"
           :key="input.label"
           :input="input"
+          page="details"
         />
       </div>
-      <div v-if="page === 2">
+      <div v-else-if="page === 2">
         <VarInput
           v-for="input in form.investigators"
           :key="input.label"
           :input="input"
+          page="investigators"
         />
       </div>
     </v-card>

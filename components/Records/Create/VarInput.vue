@@ -22,6 +22,10 @@ export default {
     input: {
       default() {},
       type: Object
+    },
+    page: {
+      default: '',
+      type: String
     }
   },
   computed: {
@@ -31,7 +35,8 @@ export default {
       },
       set(newValue) {
         const label = this.input.label
-        this.$store.dispatch('form/update', { label, newValue })
+        const page = this.page
+        this.$store.dispatch('form/update', { label, newValue, page })
       }
     }
   },

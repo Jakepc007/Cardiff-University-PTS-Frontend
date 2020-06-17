@@ -53,13 +53,15 @@ export const mutations = {
   RESET_PAGE(state) {
     state.page = 0
   },
-  UPDATE_FORM(state, { label, newValue }) {
-    const pos = state.form.details
-      .map((e) => {
-        return e.label
-      })
-      .indexOf(label)
-    state.form.details[pos].value = newValue
+  UPDATE_FORM(state, { newValue, page, pos }) {
+    switch (page) {
+      case 'details':
+        state.form.details[pos].value = newValue
+        break
+      case 'investigators':
+        state.form.investigators[pos].value = newValue
+        break
+    }
   }
 }
 
@@ -70,10 +72,26 @@ export const actions = {
   prevPage({ commit }) {
     commit('CHANGE_PAGE', -1)
   },
-  update({ commit }, payload) {
-    commit('UPDATE_FORM', payload)
+  update({ commit, state }, { label, newValue, page }) {
+    let pos
+    switch (page) {
+      case 'details':
+        pos = findPos(state.form.details, label)
+        break
+      case 'investigators':
+        pos = findPos(state.form.investigators, label)
+        break
+    }
+    commit('UPDATE_FORM', { newValue, page, pos })
   }
-  // submit({ commit }) { }
 }
 
 export const getters = {}
+
+const findPos = (arr, label) => {
+  return arr
+    .map((e) => {
+      return e.label
+    })
+    .indexOf(label)
+}
