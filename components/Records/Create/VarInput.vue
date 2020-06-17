@@ -9,6 +9,7 @@
 
     <v-select
       v-if="input.type === 'select'"
+      v-model="inputData"
       :items="input.options"
       :label="capitalize(input.label)"
     ></v-select>
