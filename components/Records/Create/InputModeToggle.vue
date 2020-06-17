@@ -3,7 +3,7 @@
     <div style="position: absolute; right: 10px;">
       <v-btn-toggle v-model="inputMode" dense mandatory>
         <v-btn value="form">
-          <v-icon>mdi-format-align-right</v-icon>
+          <v-icon>mdi-format-columns</v-icon>
         </v-btn>
 
         <v-btn value="entry">

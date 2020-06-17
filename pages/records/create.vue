@@ -2,65 +2,12 @@
   <div class="container">
     <ToggleContainer @toggleInputMode="toggleInputMode" />
     <FormHeader :input-mode="inputMode" :page="page" />
-
-    <v-progress-linear
-      v-if="inputMode === 'form'"
-      :value="page * 25"
-      height="6"
-      :color="page === 4 ? 'success' : 'red'"
-      rounded
-      class="mb-4"
-    ></v-progress-linear>
-
-    <v-progress-linear
-      v-if="inputMode === 'entry'"
-      :value="entryProgress"
-      height="6"
-      color="red"
-      rounded
-      class="mb-4"
-    ></v-progress-linear>
-
-    <v-card v-if="inputMode === 'form'" flat outlined class="pa-4 mb-6">
-      <v-text-field
-        v-for="input in form"
-        v-show="input.page === page"
-        :key="input.label"
-        :label="capitalize(input.label)"
-        :value="input.value"
-        :hint="input.hint"
-      ></v-text-field>
-    </v-card>
-
-    <v-card v-if="inputMode === 'entry'" flat outlined class="pa-4 mb-6">
-      <div>
-        <v-icon color="black" class="mr-1">mdi-form-select</v-icon>
-        Details
-      </div>
-      <v-text-field
-        v-for="input in form"
-        v-show="input.page === 1"
-        :key="input.label"
-        :label="capitalize(input.label)"
-        :value="input.value"
-        :hint="input.hint"
-        @input="updateProgress(input.label)"
-      ></v-text-field>
-
-      <div>
-        <v-icon color="black" class="mr-1">mdi-form-select</v-icon>
-        Details
-      </div>
-      <v-text-field
-        v-for="input in form"
-        v-show="input.page === 2"
-        :key="input.label"
-        :label="capitalize(input.label)"
-        :value="input.value"
-        :hint="input.hint"
-        @input="updateProgress(input.label)"
-      ></v-text-field>
-    </v-card>
+    <FormProgressBar
+      :input-mode="inputMode"
+      :page="page"
+      :entry-progress="entryProgress"
+    />
+    <Form :input-mode="inputMode" :page="page" :form="form" />
 
     <div v-if="inputMode === 'form'" class="d-flex justify-space-around">
       <v-btn
@@ -97,11 +44,15 @@
 import { mapState } from 'vuex'
 import ToggleContainer from '@/components/Records/Create/InputModeToggle'
 import FormHeader from '@/components/Records/Create/FormHeader'
+import FormProgressBar from '@/components/Records/Create/FormProgressBar'
+import Form from '@/components/Records/Create/Form'
 
 export default {
   components: {
     ToggleContainer,
-    FormHeader
+    FormHeader,
+    FormProgressBar,
+    Form
   },
   data() {
     return {
@@ -119,9 +70,6 @@ export default {
     })
   },
   methods: {
-    capitalize(value) {
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    },
     next() {
       this.$store.dispatch('form/nextPage')
     },

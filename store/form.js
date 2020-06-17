@@ -1,30 +1,42 @@
 export const state = () => ({
   form: {
-    title: {
-      label: 'title',
-      value: '',
-      page: 1
-    },
-    status: {
-      label: 'status',
-      hint: 'The applications current status',
-      value: '',
-      page: 1,
-      // TODO fetch these from state (less error prone)
-      options: ['Just a thought', 'Ready for submission']
-    },
-    description: {
-      label: 'description',
-      help: 'Title of the application',
-      value: '',
-      page: 1
-    },
-
-    pi: {
-      label: 'principal investigator',
-      value: '',
-      page: 2
-    }
+    details: [
+      {
+        label: 'title',
+        type: 'text',
+        value: 'delet this'
+      },
+      {
+        label: 'status',
+        hint: 'The applications current status',
+        value: '',
+        type: 'select',
+        // TODO fetch these from state (less error prone)
+        options: ['Just a thought', 'Ready for submission']
+      },
+      {
+        label: 'description',
+        type: 'text',
+        value: ''
+      },
+      {
+        label: 'scheme',
+        type: 'text',
+        value: ''
+      }
+    ],
+    investigators: [
+      {
+        label: 'principal investigator',
+        type: 'text',
+        value: ''
+      },
+      {
+        label: 'co-investigators',
+        type: 'text',
+        value: ''
+      }
+    ]
   },
   page: 1,
   formCount: 14,
@@ -40,6 +52,14 @@ export const mutations = {
   },
   RESET_PAGE(state) {
     state.page = 0
+  },
+  UPDATE_FORM(state, { label, newValue }) {
+    const pos = state.form.details
+      .map((e) => {
+        return e.label
+      })
+      .indexOf(label)
+    state.form.details[pos].value = newValue
   }
 }
 
@@ -49,6 +69,9 @@ export const actions = {
   },
   prevPage({ commit }) {
     commit('CHANGE_PAGE', -1)
+  },
+  update({ commit }, payload) {
+    commit('UPDATE_FORM', payload)
   }
   // submit({ commit }) { }
 }
