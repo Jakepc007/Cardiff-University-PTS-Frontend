@@ -1,7 +1,7 @@
 <template>
   <nav>
     <v-lazy>
-      <v-app-bar flat color="white">
+      <v-app-bar flat color="white" height="80">
         <!-- consider passing CU svg here -->
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <!-- <img
@@ -12,9 +12,16 @@
 
         <nuxt-link to="/records">
           <v-toolbar-title>
-            <div class="d-flex" style="height: 100%">
-              <v-img src="~/assets/logo.png" @click="drawer = !drawer"></v-img>
-              <span>Research Pipeline : School of Engineering</span>
+            <div class="d-flex align-center" style="height: 100%">
+              <img
+                style="width: 60px; height: 60px; margin-right: 1rem"
+                src="~/assets/logo.png"
+                @click="drawer = !drawer"
+              />
+              <h2>
+                Research Pipeline
+                <span class="brand-tag">: School of Engineering</span>
+              </h2>
             </div>
           </v-toolbar-title>
         </nuxt-link>
@@ -64,9 +71,9 @@
           src="~/assets/logo.png"
           @click="drawer = !drawer"
         />
-        <span class="title">
+        <div class="title">
           <p>Research Pipeline School of Engineering</p>
-        </span>
+        </div>
       </div>
     </v-navigation-drawer>
   </nav>
@@ -106,6 +113,12 @@ export default {
 
 .create-new-record-mobile {
   @media only screen and (min-width: 900px) {
+    display: none;
+  }
+}
+
+.brand-tag {
+  @media only screen and (max-width: 850px) {
     display: none;
   }
 }
