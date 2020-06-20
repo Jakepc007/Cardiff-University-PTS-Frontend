@@ -1,6 +1,7 @@
 <template>
   <div>
     <nuxt-link to="/records"><v-icon large>mdi-arrow-left</v-icon></nuxt-link>
+    {{ record }}
 
     <div class="record-display">
       <!-- {{ record }} -->

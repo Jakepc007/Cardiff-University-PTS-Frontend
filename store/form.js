@@ -22,10 +22,18 @@ export const state = () => ({
       },
       {
         label: 'description',
-        type: 'text'
+        type: 'textarea'
       },
       {
         label: 'scheme',
+        type: 'text'
+      },
+      {
+        label: 'required facility',
+        type: 'text'
+      },
+      {
+        label: 'comments',
         type: 'text'
       }
     ],
@@ -35,15 +43,55 @@ export const state = () => ({
         type: 'text'
       },
       {
-        label: 'co-people',
+        label: 'co-investigator',
         type: 'text'
+      },
+      {
+        label: 'partners',
+        type: 'text'
+      },
+      {
+        label: 'research group',
+        type: 'text'
+      }
+    ],
+    'date and time': [
+      {
+        label: 'estimated submission date',
+        type: 'date'
+      },
+      {
+        label: 'estimated start date',
+        type: 'date'
+      },
+      {
+        label: 'estimated duration',
+        type: 'integer'
+      },
+      {
+        label: 'estimated end date',
+        type: 'date'
+      }
+    ],
+    pricing: [
+      {
+        label: 'funder',
+        type: 'text'
+      },
+      {
+        label: 'requested amount',
+        type: 'integer'
+      },
+      {
+        label: 'estimated engin amount',
+        type: 'integer'
       }
     ]
   },
   inputsComplete: [],
   progress: 0,
   page: 1,
-  formCount: 6,
+  formCount: 17,
   inProgress: false
 })
 
@@ -58,14 +106,7 @@ export const mutations = {
     state.page = 0
   },
   UPDATE_FORM(state, { newValue, page, pos }) {
-    switch (page) {
-      case 'details':
-        state.form.details[pos].value = newValue
-        break
-      case 'people':
-        state.form.people[pos].value = newValue
-        break
-    }
+    state.form[page][pos].value = newValue
   },
   ADD_INPUT(state, label) {
     state.inputsComplete.push(label)
@@ -83,15 +124,7 @@ export const actions = {
     commit('CHANGE_PAGE', -1)
   },
   update({ commit, state }, { label, newValue, page }) {
-    let pos
-    switch (page) {
-      case 'details':
-        pos = findPos(state.form.details, label)
-        break
-      case 'people':
-        pos = findPos(state.form.people, label)
-        break
-    }
+    const pos = findPos(state.form[page], label)
     commit('UPDATE_FORM', { newValue, page, pos })
   },
   addInput({ commit, state }, label) {
@@ -103,7 +136,12 @@ export const actions = {
     const newForm = {}
 
     // Combine pages to a simple array
-    const combined = [...state.form.details, ...state.form.people]
+    const combined = [
+      ...state.form.details,
+      ...state.form.people,
+      ...state.form['date and time'],
+      ...state.form.pricing
+    ]
     combined.forEach((input) => {
       newForm[input.label] = input.value
     })

@@ -1,7 +1,6 @@
 <template>
   <v-app class="layout">
     <NavBar />
-    {{ posts }}
     <Alert :alert="alert" />
     <v-lazy transition="scroll-x-transition">
       <transition name="fade" mode="out-in" transition="scroll-x-transition">

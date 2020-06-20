@@ -19,6 +19,24 @@
           @updateProgress="updateProgress"
         />
       </div>
+      <div v-else-if="page === 3">
+        <VarInput
+          v-for="input in form['date and time']"
+          :key="input.label"
+          :input="input"
+          page="date and time"
+          @updateProgress="updateProgress"
+        />
+      </div>
+      <div v-else-if="page === 4">
+        <VarInput
+          v-for="input in form.pricing"
+          :key="input.label"
+          :input="input"
+          page="pricing"
+          @updateProgress="updateProgress"
+        />
+      </div>
     </div>
 
     <div v-if="inputMode === 'entry'" class="pt-2">
@@ -44,33 +62,29 @@
         page="people"
         @updateProgress="updateProgress"
       />
+      <h3 class="mb-2">
+        <v-icon color="black" class="mr-1">mdi-clock</v-icon>
+        Date and time
+      </h3>
+      <VarInput
+        v-for="input in form['date and time']"
+        :key="input.label"
+        :input="input"
+        page="date and time"
+        @updateProgress="updateProgress"
+      />
+      <h3 class="mb-2">
+        <v-icon color="black" class="mr-1">mdi-cash</v-icon>
+        Pricing
+      </h3>
+      <VarInput
+        v-for="input in form.pricing"
+        :key="input.label"
+        :input="input"
+        page="pricing"
+        @updateProgress="updateProgress"
+      />
     </div>
-
-    <!-- <v-card v-if="inputMode === 'entry'" flat outlined class="pa-4 mb-6">
-      <div>
-        <v-icon color="black" class="mr-1">mdi-form-select</v-icon>
-        Details
-      </div>
-      <div></div>
-      <v-text-field
-        v-for="input in form.details"
-        :key="input.label"
-        :label="capitalize(input.label)"
-        :value="input.value"
-        :hint="input.hint"
-      ></v-text-field>
-      <div>
-        <v-icon color="black" class="mr-1">mdi-account-multiple</v-icon>
-        people
-      </div>
-      <v-text-field
-        v-for="input in form.people"
-        :key="input.label"
-        :label="capitalize(input.label)"
-        :value="input.value"
-        :hint="input.hint"
-      ></v-text-field>
-    </v-card> -->
   </div>
 </template>
 
