@@ -44,8 +44,22 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
+  auth: {
+    redirect: {
+      login: '/test', // redirect user when not connected
+      callback: '/records'
+    },
+    strategies: {
+      local: false,
+      auth0: {
+        domain: 'cuengrg.eu.auth0.com',
+        client_id: 'yOMoyflTvJJOA5rBHweqzah5pDXuPZjZ'
+      }
+    }
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -88,6 +102,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) { }
   }
 }

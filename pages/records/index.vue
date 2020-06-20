@@ -1,6 +1,8 @@
 <template>
   <div class="container">
     <Filters :records="records" />
+    <div v-if="$auth.loggedIn">Hello! {{ user }}</div>
+    <div v-else>Goodbye! :)</div>
 
     <v-card
       v-if="Object.keys(recentRecord).length > 0"
@@ -35,6 +37,7 @@ export default {
     RecordCard,
     Filters
   },
+  middleware: 'auth',
   async asyncData({ store, error }) {
     try {
       // await store.dispatch('alerts/fetchAlert')
@@ -56,7 +59,10 @@ export default {
     ...mapState({
       records: (state) => state.records.paged,
       recentRecord: (state) => state.records.recentRecord
-    })
+    }),
+    user() {
+      return this.$auth.user
+    }
     // recentRecord() {
     //   const recent = this.$store.state.records.recentRecord
     //   return recent
