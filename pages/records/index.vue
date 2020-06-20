@@ -9,7 +9,7 @@
       color="primary"
     >
       <h2 class="white--text">Recently Created</h2>
-      <RecordCard :r="recentRecord" class="" />
+      <RecordCard :key="recentRecord.id" :r="recentRecord" class="" />
       <v-icon
         style="position: absolute; top: 20px; right: 20px; cursor: pointer"
         color="white"
@@ -57,6 +57,10 @@ export default {
       records: (state) => state.records.paged,
       recentRecord: (state) => state.records.recentRecord
     })
+    // recentRecord() {
+    //   const recent = this.$store.state.records.recentRecord
+    //   return recent
+    // }
   },
   methods: {
     ...mapActions({ removeRecentDisplay: 'records/removeRecentDisplay' }),

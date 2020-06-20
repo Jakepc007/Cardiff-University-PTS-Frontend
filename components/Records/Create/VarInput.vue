@@ -4,6 +4,7 @@
       v-if="input.type === 'text'"
       v-model="inputData"
       outlined
+      color="red"
       :label="capitalize(input.label)"
       :hint="input.hint"
     ></v-text-field>
@@ -11,9 +12,11 @@
     <v-select
       v-if="input.type === 'select'"
       v-model="inputData"
+      color="red"
       outlined
       :items="input.options"
       :label="capitalize(input.label)"
+      :hint="input.hint"
     ></v-select>
   </div>
 </template>

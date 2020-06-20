@@ -5,7 +5,8 @@ export const state = () => ({
     details: [
       {
         label: 'title',
-        type: 'text'
+        type: 'text',
+        hint: 'Enter the title here!'
       },
       {
         label: 'status',

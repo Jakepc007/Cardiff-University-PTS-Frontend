@@ -3,7 +3,7 @@
     <v-pagination
       v-model="page"
       :length="pageCount"
-      circle
+      total-visible="7"
       @input="onChange"
     ></v-pagination>
   </div>
