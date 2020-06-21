@@ -54,7 +54,7 @@
 
     <v-text-field
       v-if="input.type === 'integer'"
-      v-model="date"
+      v-model="inputData"
       outlined
       type="number"
       :label="capitalize(input.label)"
@@ -108,6 +108,7 @@ export default {
       const label = this.input.label
       const page = this.page
       this.$store.dispatch('form/update', { label, newValue, page })
+      this.$emit('updateProgress', label)
     }
   }
 }
