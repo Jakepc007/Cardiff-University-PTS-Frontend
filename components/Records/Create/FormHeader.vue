@@ -5,23 +5,26 @@
       class="-mt-2 mb-2 text-h6 font-weight-bold"
       style="margin-top: -2rem"
     >
-      Step <span style="color: red">{{ page }}</span> |
-      <span v-if="page === 1">
-        Details
-        <v-icon color="black" class="mr-1">mdi-form-select</v-icon>
-      </span>
-      <span v-if="page === 2">
-        People
-        <v-icon color="black" class="mr-1">mdi-account-multiple</v-icon>
-      </span>
-      <span v-if="page === 3">
-        Date and Time
-        <v-icon color="black" class="mr-1">mdi-clock</v-icon>
-      </span>
-      <span v-if="page === 4">
-        Pricing
-        <v-icon color="black" class="mr-1">mdi-cash</v-icon>
-      </span>
+      <!-- Step <span style="color: red">{{ page }}</span> | -->
+      <MiniHeader
+        v-if="page === 1"
+        large
+        title="Details"
+        icon="mdi-form-select"
+      />
+      <MiniHeader
+        v-if="page === 2"
+        large
+        title="People"
+        icon="mdi-account-multiple"
+      />
+      <MiniHeader
+        v-if="page === 3"
+        large
+        title="Date and time"
+        icon="mdi-clock"
+      />
+      <MiniHeader v-if="page === 4" large title="Pricing" icon="mdi-cash" />
     </h3>
 
     <h3
@@ -38,7 +41,12 @@
 </template>
 
 <script>
+import MiniHeader from '@/components/Records/Create/MiniHeader'
+
 export default {
+  components: {
+    MiniHeader
+  },
   props: {
     page: {
       default: 1,
@@ -57,4 +65,10 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.brand-intro {
+  @media only screen and (max-width: 500px) {
+    display: none;
+  }
+}
+</style>

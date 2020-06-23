@@ -8,6 +8,7 @@ export const state = () => ({
     'Just a thought',
     'Ready for submission',
     'Preparing documents',
+    'Rejected',
     'Awarded'
   ],
   filter: {
@@ -51,13 +52,7 @@ export const mutations = {
     state.paged = records
   },
   ADD_RECORD(state, record) {
-    console.log('ES: ', record)
-
-    state.recentRecord = record
     state.records.push(record)
-  },
-  REMOVE_RECENT_DISPLAY(state) {
-    state.recentRecord = {}
   }
 }
 
@@ -100,9 +95,6 @@ export const actions = {
   updatePage({ commit, dispatch }, page) {
     commit('SET_PAGE', page)
     dispatch('findRecords')
-  },
-  removeRecentDisplay({ commit }) {
-    commit('REMOVE_RECENT_DISPLAY')
   }
 }
 

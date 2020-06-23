@@ -19,7 +19,7 @@
                 @click="drawer = !drawer"
               />
               <h2>
-                Research Pipeline
+                <span class="brand-intro">Research Pipeline</span>
                 <span class="brand-tag">: School of Engineering</span>
               </h2>
             </div>
@@ -119,6 +119,12 @@ export default {
 
 .brand-tag {
   @media only screen and (max-width: 850px) {
+    display: none;
+  }
+}
+
+.brand-intro {
+  @media only screen and (max-width: 500px) {
     display: none;
   }
 }

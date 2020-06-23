@@ -87,10 +87,7 @@ export default {
         return this.input.value
       },
       set(newValue) {
-        const label = this.input.label
-        const page = this.page
-        this.$store.dispatch('form/update', { label, newValue, page })
-        this.$emit('updateProgress', label)
+        this.update(newValue)
       }
     }
   },
@@ -105,6 +102,9 @@ export default {
     },
     saveDate(newValue) {
       this.$refs.menu.save(newValue)
+      this.update(newValue)
+    },
+    update(newValue) {
       const label = this.input.label
       const page = this.page
       this.$store.dispatch('form/update', { label, newValue, page })

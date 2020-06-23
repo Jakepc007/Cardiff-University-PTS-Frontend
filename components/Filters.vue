@@ -10,7 +10,7 @@
       @input="updateSearchQuery"
     ></v-text-field>
     <!-- <h4>Status</h4> -->
-    <div class="grid filter-content">
+    <v-card class="grid filter-content">
       <div
         v-for="(status, index) in statuses"
         :key="index"
@@ -25,15 +25,9 @@
           :hide-details="true"
           @change="filterStatus(status)"
         />
-        <!-- <span class="amount">{{
-            records.filter((r) => r.status === status).length
-          }}</span> -->
       </div>
-    </div>
+    </v-card>
   </div>
-  <!-- <div class="btn-container">
-      <v-btn @click="search">Search</v-btn>
-    </div> -->
 </template>
 
 <script>
@@ -77,13 +71,14 @@ export default {
 <style lang="scss">
 .filter {
   margin-bottom: 2rem;
-  // padding: 1rem;
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+
   @media only screen and (min-width: 900px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
@@ -98,14 +93,7 @@ export default {
   text-align: center;
 }
 
-.btn-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
 .filter-container {
-  // background: rgb(255, 236, 236);
-  // background: white;
+  padding: 0.5rem;
 }
 </style>

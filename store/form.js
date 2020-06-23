@@ -15,8 +15,9 @@ export const state = () => ({
         // TODO fetch these from state (less error prone)
         options: [
           'Just a thought',
-          'Preparing Documents',
           'Ready for submission',
+          'Preparing documents',
+          'Rejected',
           'Awarded'
         ]
       },
@@ -88,6 +89,7 @@ export const state = () => ({
       }
     ]
   },
+  defaultForm: {},
   inputsComplete: [],
   progress: 0,
   page: 1,
@@ -103,7 +105,7 @@ export const mutations = {
     state.inProgress = !state.inProgress
   },
   RESET_PAGE(state) {
-    state.page = 0
+    state.page = 1
   },
   UPDATE_FORM(state, { newValue, page, pos }) {
     state.form[page][pos].value = newValue
@@ -113,6 +115,30 @@ export const mutations = {
   },
   SET_PROGRESS(state, progress) {
     state.progress = progress
+  },
+  CLEAR_FORM(state) {
+    const def = {}
+    def.details = state.form.details.map((el) => {
+      const newEl = el
+      newEl.value = ''
+      return newEl
+    })
+    def.people = state.form.people.map((el) => {
+      const newEl = el
+      newEl.value = ''
+      return newEl
+    })
+    def['date and time'] = state.form['date and time'].map((el) => {
+      const newEl = el
+      newEl.value = ''
+      return newEl
+    })
+    def.pricing = state.form.pricing.map((el) => {
+      const newEl = el
+      newEl.value = ''
+      return newEl
+    })
+    state.form = def
   }
 }
 
@@ -132,7 +158,7 @@ export const actions = {
     const progress = (state.inputsComplete.length / state.formCount) * 100
     commit('SET_PROGRESS', progress)
   },
-  submit({ commit, state }) {
+  submit({ commit, dispatch, state }) {
     const newForm = {}
 
     // Combine pages to a simple array
@@ -148,6 +174,8 @@ export const actions = {
 
     // Post the the form to the api
     return EventService.submitForm(newForm).then(() => {
+      commit('CLEAR_FORM')
+      commit('RESET_PAGE')
       commit('records/ADD_RECORD', newForm, { root: true })
     })
   }

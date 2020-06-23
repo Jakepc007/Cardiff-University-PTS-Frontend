@@ -4,9 +4,7 @@
     <Alert :alert="alert" />
     <v-lazy transition="scroll-x-transition">
       <transition name="fade" mode="out-in" transition="scroll-x-transition">
-        <v-container>
-          <nuxt class="app" />
-        </v-container>
+        <nuxt class="app" />
       </transition>
     </v-lazy>
 
@@ -45,10 +43,6 @@ export default {
 </script>
 
 <style lang="scss">
-.container {
-  padding: 2px;
-}
-
 .fade-enter {
   opacity: 0;
   // filter: blur(200px);
