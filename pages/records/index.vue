@@ -4,6 +4,9 @@
     <div v-if="$auth.loggedIn">Hello! {{ user }}</div>
     <div v-else>Goodbye! :)</div>
 
+    <v-btn @click="$auth.loginWith('auth0')">Login</v-btn>
+    <v-btn @click="$auth.logout()">Logout</v-btn>
+
     <v-card
       v-if="Object.keys(recentRecord).length > 0"
       class="pa-4 mb-6"

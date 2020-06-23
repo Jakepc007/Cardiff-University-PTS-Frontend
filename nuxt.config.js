@@ -50,7 +50,7 @@ export default {
   auth: {
     redirect: {
       login: '/test', // redirect user when not connected
-      callback: '/records'
+      callback: '/records/'
     },
     strategies: {
       local: false,
