@@ -1,6 +1,11 @@
 <template>
   <div class="container">
     <Filters :records="records" />
+    <div v-if="$auth.loggedIn">Hello! {{ user }}</div>
+    <div v-else>Goodbye! :)</div>
+
+    <v-btn @click="$auth.loginWith('auth0')">Login</v-btn>
+    <v-btn @click="$auth.logout()">Logout</v-btn>
 
     <h2>All Records</h2>
     <RecordList :records="records" />
@@ -17,6 +22,7 @@ export default {
     RecordList,
     Filters
   },
+  middleware: 'auth',
   async asyncData({ store, error }) {
     try {
       // await store.dispatch('alerts/fetchAlert')
@@ -38,7 +44,10 @@ export default {
     ...mapState({
       records: (state) => state.records.paged,
       recentRecord: (state) => state.records.recentRecord
-    })
+    }),
+    user() {
+      return this.$auth.user
+    }
     // recentRecord() {
     //   const recent = this.$store.state.records.recentRecord
     //   return recent
