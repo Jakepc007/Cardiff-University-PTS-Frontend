@@ -80,8 +80,6 @@ export default {
     },
     submit() {
       this.$store.dispatch('form/submit').then((res) => {
-        console.log('Yo')
-
         this.$router.push('/records')
       })
     },

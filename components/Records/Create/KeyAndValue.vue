@@ -1,10 +1,16 @@
 <template>
   <div class="mb-1">
-    <h2>{{ heading }}</h2>
+    <h2 class="grey--text text--darken-1">{{ heading }}</h2>
     <ul v-if="aggeragate">
-      <li v-for="(val, index) in value.split(',')" :key="index">{{ val }}</li>
+      <li
+        v-for="(val, index) in value.split(',')"
+        :key="index"
+        style="font-weight: 600"
+      >
+        {{ val }}
+      </li>
     </ul>
-    <span v-else>
+    <span v-else style="font-weight: 600">
       {{ value }}
     </span>
   </div>
@@ -22,6 +28,10 @@ export default {
       type: String
     },
     aggeragate: {
+      default: false,
+      type: Boolean
+    },
+    gray: {
       default: false,
       type: Boolean
     }
