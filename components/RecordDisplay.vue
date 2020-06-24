@@ -51,7 +51,7 @@
       />
       <KeyAndValue
         heading="Estimated Duration"
-        :value="record['estimated duration']"
+        :value="record['estimated duration'] + ' Months'"
       />
       <KeyAndValue
         heading="Estimated Submission Date"
@@ -67,11 +67,11 @@
       <KeyAndValue gray heading="Funder" :value="record['funder']" />
       <KeyAndValue
         heading="Requested Amount"
-        :value="record['requested amount']"
+        :value="'£' + record['requested amount']"
       />
       <KeyAndValue
         heading="Estimated Engin Amount"
-        :value="record['estimated engin amount']"
+        :value="'£' + record['estimated engin amount']"
       />
     </div>
   </div>
