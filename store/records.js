@@ -5,9 +5,9 @@ export const state = () => ({
   filtered: [],
   record: {},
   statuses: [
-    'Just a thought',
-    'Ready for submission',
-    'Preparing documents',
+    'Just a Thought',
+    'Ready for Submission',
+    'Preparing Documents',
     'Rejected',
     'Awarded'
   ],
@@ -114,7 +114,7 @@ export const getters = {
 
     if (filter.statuses.length !== 0) {
       records = records.filter((r) => {
-        return filter.statuses.includes(r.status)
+        return filter.statuses.includes(r.statuses.slice(-1)[0].status.name)
       })
     }
 

@@ -45,10 +45,15 @@ export default {
   color: rgb(141, 97, 15);
 }
 
+.RED {
+  background: rgb(255, 91, 91);
+  color: white;
+}
+
 .feedback-prompt {
   font-weight: 600;
   text-decoration-line: underline;
   text-decoration-thickness: 0.2rem;
-  color: black;
+  color: white;
 }
 </style>

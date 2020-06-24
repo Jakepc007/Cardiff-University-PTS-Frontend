@@ -10,11 +10,11 @@
       "statuses": [
         {
           "date": "15-06-2020",
-          "name": "Just a thought"
+          "name": "Just a Thought"
         },
         {
           "date": "23-06-2020",
-          "name": "Preparing documents"
+          "name": "Preparing Documents"
         }
       ],
       "description": "In this project, 3 students from cardiff university will be testing how the coronavirus reacts with different organisms, the goal is to gain further understanding on its methods of spreading.",
@@ -37,6 +37,17 @@
       "requested amount": "50000",
       "estimated engin amount": "2000",
       "id": 1
+    },
+    {
+      "title": "asdsad",
+      "description": "asd",
+      "scheme": "asd",
+      "comments": "sadasd",
+      "principalInvestigator": "asdas",
+      "partners": "asd",
+      "researchGroup": "asdas",
+      "estimatedStartDate": "2021-02-03",
+      "id": 2
     }
   ]
 }

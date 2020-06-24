@@ -1,7 +1,16 @@
 import axios from 'axios'
 
-const apiClient = axios.create({
-  baseURL: `http://localhost:3000`,
+// const apiClient = axios.create({
+//   baseURL: `http://localhost:3000`,
+//   withCredentials: false, // This is the default
+//   headers: {
+//     Accept: 'application/json',
+//     'Content-Type': 'application/json'
+//   }
+// })
+
+const apiClient2 = axios.create({
+  baseURL: `http://localhost:8080`,
   withCredentials: false, // This is the default
   headers: {
     Accept: 'application/json',
@@ -11,15 +20,18 @@ const apiClient = axios.create({
 
 export default {
   getActiveAlert() {
-    return apiClient.get('/alert')
+    return apiClient2.get('/v1/alerts/latest/')
   },
   getCurrentRecord(id) {
-    return apiClient.get('/records/' + id)
+    return apiClient2.get('/v1/records/' + id)
   },
   getRecords() {
-    return apiClient.get('/records')
+    return apiClient2.get('/v1/records/')
   },
   submitForm(form) {
-    return apiClient.post('records/', form)
+    return apiClient2.post('v1/records/', form)
+  },
+  test() {
+    return apiClient2.get('/v1/records/1')
   }
 }

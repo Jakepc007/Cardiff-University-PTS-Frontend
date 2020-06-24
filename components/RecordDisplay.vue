@@ -14,11 +14,8 @@
         :value="record.statuses.slice(-1)[0].name"
       />
       <KeyAndValue heading="Scheme" :value="record.scheme" />
-      <KeyAndValue
-        heading="Required Facility"
-        :value="record['required facility']"
-      />
-      <KeyAndValue heading="Comments" :value="record.comments" />
+      <KeyAndValue heading="Required Facility" :value="record['facility']" />
+      <KeyAndValue heading="Comments" :value="record.comment" />
 
       <MiniHeader
         class="mt-8"
@@ -29,11 +26,11 @@
       <v-divider class="my-3"></v-divider>
       <KeyAndValue
         heading="Principal Investigator"
-        :value="record['principal investigator']"
+        :value="record['principalInvestigator']"
       />
       <KeyAndValue
         heading="Co-Investigators"
-        :value="record['co-investigators']"
+        :value="record['coInvestigators']"
         aggeragate
       />
       <KeyAndValue heading="Partners" :value="record.partners" />
@@ -42,36 +39,29 @@
       <MiniHeader class="mt-8" large title="Date and time" icon="mdi-clock" />
       <v-divider class="my-3"></v-divider>
       <KeyAndValue
-        heading="Estimated Submission Date"
-        :value="record['estimated submission date']"
-      />
-      <KeyAndValue
         heading="Estimated Start Date"
-        :value="record['estimated start date']"
-      />
-      <KeyAndValue
-        heading="Estimated Duration"
-        :value="record['estimated duration'] + ' Months'"
+        :value="record['startDate']"
       />
       <KeyAndValue
         heading="Estimated Submission Date"
-        :value="record['estimated submission date']"
+        :value="record['submissionDate']"
       />
-      <KeyAndValue
-        heading="Estimated End Date"
-        :value="record['estimated end date']"
-      />
+      <KeyAndValue heading="Estimated End Date" :value="record['endDate']" />
 
       <MiniHeader class="mt-8" large title="Pricing" icon="mdi-cash" />
       <v-divider class="my-3"></v-divider>
-      <KeyAndValue gray heading="Funder" :value="record['funder']" />
       <KeyAndValue
-        heading="Requested Amount"
-        :value="'£' + record['requested amount']"
+        gray
+        heading="Funding Group"
+        :value="record['fundingGroup'].name"
       />
       <KeyAndValue
-        heading="Estimated Engin Amount"
-        :value="'£' + record['estimated engin amount']"
+        heading="Requested Amount"
+        :value="'£' + record['requestedAmount']"
+      />
+      <KeyAndValue
+        heading="Estimated Amount"
+        :value="'£' + record['estimatedAmount']"
       />
     </div>
   </div>

@@ -4,87 +4,99 @@ export const state = () => ({
   form: {
     details: [
       {
+        id: 'title',
         label: 'title',
         type: 'text',
         hint: 'Enter the title here!'
       },
       {
+        id: 'status',
         label: 'status',
         hint: 'The applications current status',
         type: 'select',
         // TODO fetch these from state (less error prone)
         options: [
-          'Just a thought',
-          'Ready for submission',
-          'Preparing documents',
+          'Just a Thought',
+          'Ready for Submission',
+          'Preparing Documents',
           'Rejected',
           'Awarded'
         ]
       },
       {
+        id: 'description',
         label: 'description',
         type: 'textarea'
       },
       {
+        id: 'scheme',
         label: 'scheme',
         type: 'text'
       },
       {
+        id: 'facility',
         label: 'required facility',
         type: 'text'
       },
       {
+        id: 'comment',
         label: 'comments',
         type: 'text'
       }
     ],
     people: [
       {
+        id: 'principalInvestigator',
         label: 'principal investigator',
         type: 'text'
       },
       {
+        id: 'coInvestigators',
         label: 'co-investigators',
         type: 'array'
       },
       {
+        id: 'partners',
         label: 'partners',
         type: 'text'
       },
       {
+        id: 'researchGroup',
         label: 'research group',
         type: 'text'
       }
     ],
     'date and time': [
       {
+        id: 'submissionDate',
         label: 'estimated submission date',
         type: 'date'
       },
       {
+        id: 'startDate',
         label: 'estimated start date',
         type: 'date'
       },
       {
-        label: 'estimated duration',
-        type: 'integer'
-      },
-      {
+        id: 'endDate',
         label: 'estimated end date',
         type: 'date'
       }
     ],
     pricing: [
       {
-        label: 'funder',
+        id: 'fundingGroup',
+        label: 'Funding Group',
         type: 'text'
       },
       {
+        id: 'requestedAmount',
         label: 'requested amount',
         type: 'integer'
       },
       {
-        label: 'estimated engin amount',
+        id: 'estimatedAmount',
+        label: 'estimated amount',
         type: 'integer'
       }
     ]
@@ -93,7 +105,7 @@ export const state = () => ({
   inputsComplete: [],
   progress: 0,
   page: 1,
-  formCount: 17,
+  formCount: 16,
   inProgress: false
 })
 
@@ -169,8 +181,10 @@ export const actions = {
       ...state.form.pricing
     ]
     combined.forEach((input) => {
-      newForm[input.label] = input.value
+      newForm[input.id] = input.value
     })
+
+    console.log(newForm)
 
     // Post the the form to the api
     return EventService.submitForm(newForm).then(() => {
@@ -180,8 +194,6 @@ export const actions = {
     })
   }
 }
-
-export const getters = {}
 
 const findPos = (arr, label) => {
   return arr
