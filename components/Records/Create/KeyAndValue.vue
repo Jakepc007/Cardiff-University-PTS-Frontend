@@ -2,11 +2,7 @@
   <div class="mb-1">
     <h2 class="grey--text text--darken-1">{{ heading }}</h2>
     <ul v-if="aggeragate">
-      <li
-        v-for="(val, index) in value.split(',')"
-        :key="index"
-        style="font-weight: 600"
-      >
+      <li v-for="(val, index) in value" :key="index" style="font-weight: 600">
         {{ val }}
       </li>
     </ul>
@@ -25,7 +21,7 @@ export default {
     },
     value: {
       default: '',
-      type: String
+      type: [String, Array]
     },
     aggeragate: {
       default: false,

@@ -44,8 +44,8 @@ export const state = () => ({
         type: 'text'
       },
       {
-        label: 'co-investigator',
-        type: 'text'
+        label: 'co-investigators',
+        type: 'array'
       },
       {
         label: 'partners',

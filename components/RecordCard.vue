@@ -10,7 +10,7 @@
                   <span class="red--text">{{ r.id }} | </span>
                   <span>{{ r.title }}</span>
                 </div>
-                <v-list-item-subtitle>{{ r.status }}</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ status }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </router-link>
@@ -28,6 +28,11 @@ export default {
       default() {
         return {}
       }
+    }
+  },
+  computed: {
+    status() {
+      return this.r.statuses.slice(-1)[0].name
     }
   }
 }

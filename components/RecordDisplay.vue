@@ -9,7 +9,10 @@
       <v-divider class="my-3"></v-divider>
       <KeyAndValue heading="Title" :value="record.title" />
       <KeyAndValue heading="Description" :value="record.description" />
-      <KeyAndValue heading="Status" :value="record.status" />
+      <KeyAndValue
+        heading="Status"
+        :value="record.statuses.slice(-1)[0].name"
+      />
       <KeyAndValue heading="Scheme" :value="record.scheme" />
       <KeyAndValue
         heading="Required Facility"
@@ -30,7 +33,7 @@
       />
       <KeyAndValue
         heading="Co-Investigators"
-        :value="record['co-investigator']"
+        :value="record['co-investigators']"
         aggeragate
       />
       <KeyAndValue heading="Partners" :value="record.partners" />

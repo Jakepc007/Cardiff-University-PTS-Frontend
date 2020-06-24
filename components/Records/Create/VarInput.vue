@@ -60,6 +60,32 @@
       :label="capitalize(input.label)"
       :hint="input.hint"
     ></v-text-field>
+
+    <v-combobox
+      v-if="input.type === 'array'"
+      v-model="chips"
+      :items="items"
+      chips
+      clearable
+      label="Co-Investigators"
+      multiple
+      append-icon="mdi-chevron-down"
+      outlined
+    >
+      <template v-slot:selection="{ attrs, item, select, selected }">
+        <v-chip
+          v-bind="attrs"
+          :input-value="selected"
+          close
+          @click="select"
+          @click:close="remove(item)"
+        >
+          <strong>{{ item }}</strong
+          >&nbsp;
+          <!-- <span>(interest)</span> -->
+        </v-chip>
+      </template>
+    </v-combobox>
   </div>
 </template>
 
@@ -78,7 +104,19 @@ export default {
   data() {
     return {
       menu: false,
-      date: this.input.value
+      date: this.input.value,
+      chips: this.input.value,
+      items: [
+        'Joe Tomas',
+        'Sam Jackson',
+        'Rees Webber',
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F'
+      ]
     }
   },
   computed: {
@@ -94,6 +132,9 @@ export default {
   watch: {
     menu(val) {
       val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
+    },
+    chips(newValue) {
+      this.update(newValue)
     }
   },
   methods: {
@@ -109,6 +150,10 @@ export default {
       const page = this.page
       this.$store.dispatch('form/update', { label, newValue, page })
       this.$emit('updateProgress', label)
+    },
+    remove(item) {
+      this.chips.splice(this.chips.indexOf(item), 1)
+      this.chips = [...this.chips]
     }
   }
 }

@@ -7,13 +7,26 @@
   "records": [
     {
       "title": "Cardiff University Coronavirus Research",
-      "status": "Preparing documents",
+      "statuses": [
+        {
+          "date": "15-06-2020",
+          "name": "Just a thought"
+        },
+        {
+          "date": "23-06-2020",
+          "name": "Preparing documents"
+        }
+      ],
       "description": "In this project, 3 students from cardiff university will be testing how the coronavirus reacts with different organisms, the goal is to gain further understanding on its methods of spreading.",
       "scheme": "Standard",
       "required facility": "Biology Labs",
       "comments": "None",
       "principal investigator": "Joe Thomas",
-      "co-investigator": "Rees Smith, Keira Watkins, Chloe Norris",
+      "co-investigators": [
+        "Rees Smith",
+        "Keira Watkins",
+        "Chloe Norris"
+      ],
       "partners": "BEU Academy",
       "research group": "Medical Eng",
       "estimated submission date": "2021-02-10",
