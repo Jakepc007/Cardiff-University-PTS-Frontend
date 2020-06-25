@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     status() {
-      return this.r.statuses.slice(-1)[0].status.name
+      return this.r.statuses.slice(-1)[0].name
     }
   }
 }

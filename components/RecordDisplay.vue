@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="record-display">
-      <nuxt-link to="/records">
+      <nuxt-link to="/">
         <MiniHeader large title="Back" icon="mdi-arrow-left"
       /></nuxt-link>
 

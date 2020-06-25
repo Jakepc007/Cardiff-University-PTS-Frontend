@@ -10,7 +10,7 @@
         @click="drawer = !drawer"
       /> -->
 
-        <nuxt-link to="/records">
+        <nuxt-link to="/">
           <v-toolbar-title>
             <div class="d-flex align-center" style="height: 100%">
               <img
@@ -42,7 +42,7 @@
         </div>
 
         <div v-if="createState">
-          <nuxt-link to="/records">
+          <nuxt-link to="/">
             <v-btn depressed class="create-new-record-desktop">
               <v-icon>mdi-arrow-left</v-icon>
               Back

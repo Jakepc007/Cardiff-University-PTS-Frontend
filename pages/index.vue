@@ -1,11 +1,11 @@
 <template>
   <div class="container">
+    <h1 v-if="$auth.loggedIn" class="mb-2">
+      Welcome, {{ user.nickname }}.
+      <v-btn @click="$auth.logout()">Logout</v-btn>
+    </h1>
+    <div v-else><v-btn @click="$auth.loginWith('auth0')">Login</v-btn></div>
     <Filters :records="records" />
-    <div v-if="$auth.loggedIn">Hello! {{ user }}</div>
-    <div v-else>Goodbye! :)</div>
-
-    <v-btn @click="$auth.loginWith('auth0')">Login</v-btn>
-    <v-btn @click="$auth.logout()">Logout</v-btn>
 
     <h2>All Records</h2>
     <RecordList :records="records" />
@@ -29,10 +29,10 @@ export default {
       await store.dispatch('records/fetchRecords')
       await store.dispatch('records/findRecords')
     } catch (e) {
-      error({
-        statusCode: 503,
-        message: 'Unable to fetch any data from the server'
-      })
+      // error({
+      //   statusCode: 503,
+      //   message: 'Unable to fetch any data from the server'
+      // })
     }
   },
   data() {

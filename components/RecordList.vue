@@ -7,6 +7,11 @@
       value="3"
       :page="page"
     />
+    <div style="position: relative">
+      <v-btn absolute dark fab top right color="red">
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
+    </div>
   </div>
 </template>
 

@@ -80,7 +80,7 @@ export default {
     },
     submit() {
       this.$store.dispatch('form/submit').then((res) => {
-        this.$router.push('/records')
+        this.$router.push('/')
       })
     },
     toggleInputMode(value) {

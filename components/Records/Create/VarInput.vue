@@ -48,6 +48,9 @@
       <v-date-picker
         ref="picker"
         v-model="date"
+        min="2020-01-01"
+        max="2030-01-01"
+        elevation="15"
         @change="saveDate"
       ></v-date-picker>
     </v-menu>

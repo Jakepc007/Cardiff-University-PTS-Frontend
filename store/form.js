@@ -63,7 +63,8 @@ export const state = () => ({
       {
         id: 'researchGroup',
         label: 'research group',
-        type: 'text'
+        type: 'select',
+        options: ['RAS', 'AOG']
       }
     ],
     'date and time': [
@@ -87,7 +88,8 @@ export const state = () => ({
       {
         id: 'fundingGroup',
         label: 'Funding Group',
-        type: 'text'
+        type: 'select',
+        options: ['Engineering and Physical Sciences Research Council']
       },
       {
         id: 'requestedAmount',

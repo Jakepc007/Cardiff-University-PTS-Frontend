@@ -1,6 +1,6 @@
 <template>
   <v-lazy transition="scroll-y-transition">
-    <v-card class="alert" tile flat :class="alert.level">
+    <v-card class="alert" :class="alert.level" tile flat>
       {{ alert.alert }}.
       <span>
         Please provide feedback for us
@@ -50,10 +50,19 @@ export default {
   color: white;
 }
 
+.BLUE {
+  background: rgb(56, 53, 255);
+  color: white;
+}
+
+.YELLOW {
+  background: yellow;
+  color: black;
+}
+
 .feedback-prompt {
   font-weight: 600;
   text-decoration-line: underline;
   text-decoration-thickness: 0.2rem;
-  color: white;
 }
 </style>
