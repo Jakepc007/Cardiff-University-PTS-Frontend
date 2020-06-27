@@ -4,7 +4,7 @@
       Welcome, {{ user.nickname }}.
       <v-btn @click="$auth.logout()">Logout</v-btn>
     </h1>
-    <div v-else><v-btn @click="$auth.loginWith('auth0')">Login</v-btn></div>
+    <div v-else><v-btn @click="login">Login</v-btn></div>
     <Filters :records="records" />
 
     <h2>All Records</h2>
@@ -57,6 +57,10 @@ export default {
     ...mapActions({ removeRecentDisplay: 'records/removeRecentDisplay' }),
     closeRecent() {
       this.removeRecentDisplay()
+    },
+    login() {
+      this.$auth.loginWith('auth0')
+      // .then(this.$router.push('/'))
     }
   }
 }
