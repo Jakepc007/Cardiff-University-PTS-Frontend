@@ -49,8 +49,8 @@ export default {
   ],
   auth: {
     redirect: {
-      login: '/test', // redirect user when not connected
-      callback: '/records/'
+      login: '/', // redirect user when not connected
+      callback: '/'
     },
     strategies: {
       local: false,
@@ -102,6 +102,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) { }
   }
 }
